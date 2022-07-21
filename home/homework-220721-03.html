@@ -1,9 +1,17 @@
 <!--
-1. <input> , <button> 태그 이용해서
-버튼을 누르면 숫자의 증감이 input 박스 안의 값으로 변경되게 수정하기
+1. 두번째 과제 파일 다시 열기.
 
-2. 정상적으로 button이 동작하면 완료
+2. 버튼 6개 생성 [1,10,100],[-1,-10,-100]
+
+3. 버튼을 누르면 inputfield 에 값이 적용 
+
+4. 버튼을 누를때마다 더하기 또는 빼기가 적용이 되면 1차 성공
+
+5. 사과 과제 모형 참조 자료 보고 레이아웃 따라 만들기 (더 예쁘게 꾸미셔도 됩니다)
 -->
+
+<!-- disable 기능, 할인율 반영, 장바구니 기능 추가 필요 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +19,131 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .image {
+            width: 300px;
+            position: relative;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 500px 1fr;
+            padding: 10px;
+            background-color: aquamarine;
+            border-radius: 10px;
+            border: solid 1px black;
+        }
+        .button {
+            width: 400px;
+            height: 350px; 
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        button, input {
+            width: 100px;
+            height: 60px;
+            font-size: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 1px;
+        }
+        /* td, tr{
+            width: 150px;
+            border: 1px blue solid;
+        } */
+        #title {
+            border: 1px solid black;
+            width: 150px;
+            border-radius: 5px;
+            text-align: center;
+            padding: 5px;
+            margin: 0px;
+            display: inline;
+        }
+        
+    </style>
 </head>
 <body>
-    <input type="text" id="nums">
-    <button onclick="addNumBtn(1)">증가</button>
-    <button onclick="addNumBtn(-1)">감소</button>
+    <div class="grid">
+        <div class="button">
+            <h2 id="title">사과 팝니다.</h2>
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th>남은 갯수</th>
+                    <th>가격</th>
+                </tr>
+                <tr>
+                    <td id="total" rowspan="3"></td>
+                    <td id="one"></td>
+                </tr>
+                <tr>
+
+                    <td>10% 할인 / 10개 이상</td>
+                </tr>
+                <tr>
+
+                    <td>20% 할인 / 100개 이상</td>
+                </tr>
+            </table>
+            <img class="image" src="https://tradeyouredge.com/wp-content/uploads/2012/10/Apple-Market-1024x768.jpg">
+            <!-- <button class="btn" onclick="addNumBtn(1)">증가</button>
+            <button class="btn" onclick="addNumBtn(-1)">감소</button>
+            <input class="changeBtn" type="button" value="black" onclick="changeColor()"> -->
+            <!-- 위의 3개 버튼도 같은 div에 묶여 있는데 왜 틀을 벗어나는가 -->
+        </div>
+
+        <div class="">    
+            <button id="plus1" onclick="addnum(1)">+ 1개</button>
+            <button id="plus10" onclick="addnum(10)">+ 10개</button>
+            <button id="plus100" onclick="addnum(100)">+ 100개</button>
+            <br>
+            <button id="minus1" onclick="addnum(-1)">- 1개</button>
+            <button id="minus10" onclick="addnum(-10)">- 10개</button>
+            <button id="minus100" onclick="addnum(-100)">- 100개</button>
+            <br><br>
+            <table>
+                <tr>
+                    <th>총 수량</th>
+                    <th>금액</th>
+                    <th>남은 수량</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="totalnum" value="0" readonly></td>
+                    <td><input type="text" id="totalPrice" readonly value="0"></td>
+                    <td><input type="text" id="lastnum" readonly value="500"></td>
+                </tr>
+            </table>
+        </div>  
+    </div>
 
     <script>
+        let TOTAL = 500;
+        let PRICE = 1000;
+        total.innerText=TOTAL+"개";
+        one.innerText=PRICE+"원 / 개";
+
+        let discount1 = 10;
+        let restrict1 = 10;
+        let discount2 = 20;
+        let restrict2 = 100;
+
+        function countPrice(){
+            let totalPrice = document.querySelector("#totalnum").value * PRICE;
+            document.querySelector("#totalPrice").value=totalPrice;
+        }
+        function getBack(){
+            document.querySelector("#lastnum").value = TOTAL-document.querySelector("#totalnum").value;
+        }
+
+        function addnum(num){
+            let totalnum = Number(document.querySelector("#totalnum").value);
+                document.querySelector("#totalnum").value = totalnum + num;
+                countPrice();
+                getBack();
+        }    
+
         function addNumBtn(num) {
             let v = document.querySelector("#nums").value;
             console.log(v);
@@ -25,6 +151,27 @@
         }
         // console.log(document.querySelector("#nums").value);
 
+        function changeColor(){
+
+            // console.log(document.querySelector(".changeBtn").value);
+            if(document.querySelector(".changeBtn").value==="black") {
+                document.querySelector(".changeBtn").value="blue";
+
+                document.querySelector(".grid").style.backgroundColor="black";
+                document.querySelectorAll(".btn").forEach(i => i.style.color = "red");
+            
+                // document.querySelectorAll("button.btn").style.backgroundColor ="red";
+                // document.querySelector(".btn2").style.color="red";
+            } else {
+                document.querySelector(".changeBtn").value="black";
+                document.querySelector(".grid").style.backgroundColor="blue";
+                document.querySelectorAll(".btn").forEach(i => i.style.color = "blue");
+                // document.querySelectorAll(".btn").style.backgroundColor="black";
+                // document.querySelector(".btn2").style.color="black";
+            }
+        }
+
     </script>
 </body>
 </html>
+
