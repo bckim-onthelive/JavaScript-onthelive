@@ -5,14 +5,18 @@
 2. 정상적으로 button이 동작하면 완료
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<title>Online Javascript Editor</title>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<script>
+function addNumber(number) {
+    count = document.getElementById("numberInput");
+    count.value = Number(count.value) + number;
+}
+</script>
 </head>
 <body>
-    
+    <input id="numberInput" value=0 />
+    <button onClick="addNumber(1)">+1</button>
 </body>
 </html>
