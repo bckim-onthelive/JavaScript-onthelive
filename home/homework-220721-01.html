@@ -13,6 +13,18 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <input type="text" id="nums">
+    <button onclick="addNumBtn(1)">증가</button>
+    <button onclick="addNumBtn(-1)">감소</button>
+
+    <script>
+        function addNumBtn(num) {
+            let v = document.querySelector("#nums").value;
+            console.log(v);
+            document.querySelector("#nums").value=Number(v)+num;
+        }
+        // console.log(document.querySelector("#nums").value);
+
+    </script>
 </body>
 </html>
