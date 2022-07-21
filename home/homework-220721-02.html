@@ -1,0 +1,54 @@
+<!--
+1.첫번째 과제 파일 다시 열기.
+
+2.<input> ,<button>,<div> 태그 이용해서 3개의 버튼 생성.
+
+3.버튼을 누르면 테마 변경 (background color, color 색상 변경).
+
+4. 버튼을 누를때마다 색상이 변경이 되면 성공
+
+문의점 : 버튼을 1, 2로 구분해서 changeColor()를 사용하면 되는데
+querySelecterAll을 활용한 묶음 변화는 에러가 나온다. 해결방안 필요..
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="button" style="width: 400px; height: 100px; padding: 20px; background-color: aquamarine;">
+        <input type="text" id="nums">
+        <button class="btn" onclick="addNumBtn(1)">증가</button>
+        <button class="btn" onclick="addNumBtn(-1)">감소</button>
+        <input class="changeBtn" type="button" value="black" onclick="changeColor()">
+    </div>
+
+    <script>
+        function addNumBtn(num) {
+            let v = document.querySelector("#nums").value;
+            console.log(v);
+            document.querySelector("#nums").value=Number(v)+num;
+        }
+        // console.log(document.querySelector("#nums").value);
+
+        function changeColor(){
+            // console.log(document.querySelector(".changeBtn").value);
+            if(document.querySelector(".changeBtn").value==="black") {
+                document.querySelector(".changeBtn").value="blue";
+                document.querySelector(".button").style.backgroundColor="black";
+                document.querySelectorAll(".btn").style.color="red";
+                // document.querySelector(".btn2").style.color="red";
+            } else {
+                document.querySelector(".changeBtn").value="black";
+                document.querySelector(".button").style.backgroundColor="blue";
+                document.querySelectorAll(".btn").style.color="black";
+                // document.querySelector(".btn2").style.color="black";
+            }
+        }
+
+    </script>
+</body>
+</html>
