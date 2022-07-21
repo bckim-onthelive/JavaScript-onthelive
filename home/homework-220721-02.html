@@ -38,13 +38,16 @@ querySelecterAll을 활용한 묶음 변화는 에러가 나온다. 해결방안
             // console.log(document.querySelector(".changeBtn").value);
             if(document.querySelector(".changeBtn").value==="black") {
                 document.querySelector(".changeBtn").value="blue";
+
                 document.querySelector(".button").style.backgroundColor="black";
-                document.querySelectorAll(".btn").style.color="red";
+                document.querySelectorAll(".btn").forEach(i => i.style.backgroundColor = "red");
+            
+                // document.querySelectorAll("button.btn").style.backgroundColor ="red";
                 // document.querySelector(".btn2").style.color="red";
             } else {
                 document.querySelector(".changeBtn").value="black";
                 document.querySelector(".button").style.backgroundColor="blue";
-                document.querySelectorAll(".btn").style.color="black";
+                // document.querySelectorAll(".btn").style.backgroundColor="black";
                 // document.querySelector(".btn2").style.color="black";
             }
         }
@@ -52,3 +55,4 @@ querySelecterAll을 활용한 묶음 변화는 에러가 나온다. 해결방안
     </script>
 </body>
 </html>
+
