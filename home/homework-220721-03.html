@@ -10,7 +10,7 @@
 5. 사과 과제 모형 참조 자료 보고 레이아웃 따라 만들기 (더 예쁘게 꾸미셔도 됩니다)
 -->
 
-<!-- disable 기능, 할인율 반영, 장바구니 기능 추가 필요 -->
+<!--  할인율 반영, 장바구니 기능 추가 필요 -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,11 +80,11 @@
                 </tr>
                 <tr>
 
-                    <td>10% 할인 / 10개 이상</td>
+                    <td id="rate1">10% 할인 / 10개 이상</td>
                 </tr>
                 <tr>
 
-                    <td>20% 할인 / 100개 이상</td>
+                    <td id="rate2">20% 할인 / 100개 이상</td>
                 </tr>
             </table>
             <img class="image" src="https://tradeyouredge.com/wp-content/uploads/2012/10/Apple-Market-1024x768.jpg">
@@ -99,9 +99,9 @@
             <button id="plus10" onclick="addnum(10)">+ 10개</button>
             <button id="plus100" onclick="addnum(100)">+ 100개</button>
             <br>
-            <button id="minus1" onclick="addnum(-1)">- 1개</button>
-            <button id="minus10" onclick="addnum(-10)">- 10개</button>
-            <button id="minus100" onclick="addnum(-100)">- 100개</button>
+            <button id="minus1" onclick="addnum(-1)" disabled>- 1개</button>
+            <button id="minus10" onclick="addnum(-10)" disabled>- 10개</button>
+            <button id="minus100" onclick="addnum(-100)" disabled>- 100개</button>
             <br><br>
             <table>
                 <tr>
@@ -115,10 +115,20 @@
                     <td><input type="text" id="lastnum" readonly value="500"></td>
                 </tr>
             </table>
+            <br><br>
+            <button onclick="replace()">장바구니 담기</button>
         </div>  
     </div>
 
     <script>
+        // 장바구니 담기 함수
+        function replace() {
+        //TOTAL에서 lastnum value를 빼고 TOTAL로 옮긴다. 그 값을 남은 수량에 넣고 총수량, 금액을 모두 초기화한다.
+        TOTAL = TOTAL-document.querySelector("#totalnum").value;
+        total.innerText = TOTAL+"개"
+        console.log("찍혀라 얍"+TOTAL);
+        }
+        //
         let TOTAL = 500;
         let PRICE = 1000;
         total.innerText=TOTAL+"개";
@@ -128,10 +138,41 @@
         let restrict1 = 10;
         let discount2 = 20;
         let restrict2 = 100;
+        rate1.innerText=discount1+"% 할인 / "+restrict1+"개 이상";
+        rate2.innerText=discount2+"% 할인 / "+restrict2+"개 이상";
+        
+        function discountPrice(){
+            // if (totalnum>=restrict2) {
+            //     totalPrice = totalPrice * (1-discount2*0.01);
+            // } else if (totalnum>=restrict1) {
+            //     totalPrice = totalPrice * (1-discount1*0.01);
+            // }
+        }
 
-        function countPrice(){
-            let totalPrice = document.querySelector("#totalnum").value * PRICE;
+        function countPrice(totalnum){
+            let realPrice = PRICE;
+            // discountPrice();
+            if (totalnum<restrict2) {
+                realPrice = PRICE;
+                console.log(1);
+            } else if (totalnum>=restrict1 && totalnum<restrict2) {
+                realPrice = PRICE * (1-discount1*0.01);
+                console.log(2);
+            } else if (totalnum>=restrict2) {
+                realPrice = PRICE * (1-discount2*0.01);
+            }
+            // document.querySelector("#totalnum").value
+            let totalPrice = document.querySelector("#totalnum").value * realPrice;
+            console.log("countPrice 함수의 document.querySelector(totalnum).value 타입 : "+typeof document.querySelector("#totalnum").value);
+            console.log("countPrice 함수의 realPrice 타입 : "+typeof realPrice);
+            console.log("countPrice 함수의 totalPrice 타입 : "+typeof totalPrice);
+            console.log("countPrice 함수의 totalnum 타입 : "+ totalnum);
+            // string*number=number???
+            // addnum함수에서는 totalnum이 number로 나오는데
+            // countPrice 함수에서는 totalnum이 왜 object로 나올까.
             document.querySelector("#totalPrice").value=totalPrice;
+            // console.log(typeof document.querySelector("#totalnum").value);
+
         }
         function getBack(){
             document.querySelector("#lastnum").value = TOTAL-document.querySelector("#totalnum").value;
@@ -139,10 +180,68 @@
 
         function addnum(num){
             let totalnum = Number(document.querySelector("#totalnum").value);
+            console.log("addnum함수의 totalnum 타입 : "+typeof totalnum);
                 document.querySelector("#totalnum").value = totalnum + num;
-                countPrice();
+                disabledBtn();
+                console.log("disabledBtn함수 이후 totalnum 타입 : "+typeof totalnum);
+
+                countPrice(totalnum);
                 getBack();
         }    
+
+        function disabledBtn(){
+            let numref = document.querySelector("#totalnum").value;
+            let plus1 = document.querySelector("#plus1");
+            let plus10 = document.querySelector("#plus10");
+            let plus100 = document.querySelector("#plus100");
+            let minus1 = document.querySelector("#minus1");
+            let minus10 = document.querySelector("#minus10");
+            let minus100 = document.querySelector("#minus100");
+            
+            if(numref>=500) {
+                plus1.disabled="true";
+                plus10.disabled="true";
+                plus100.disabled="true";
+            } else if(numref>=491) {
+                plus10.disabled="true";
+                plus100.disabled="true";
+            } else if(numref>=401) {
+                plus100.disabled="true";
+            }
+
+            if(numref<=400) {
+                plus1.disabled="";
+                plus10.disabled="";
+                plus100.disabled="";
+            } else if(numref<=490) {
+                plus10.disabled="";
+                plus1 .disabled="";
+            } else if(numref<=499) {
+                plus1.disabled="";
+            }
+
+            if(numref>=100) {
+                minus100.disabled="";
+                minus10.disabled="";
+                minus1.disabled="";
+            } else if(numref>=10) {
+                minus10.disabled="";
+                minus1.disabled="";
+            } else if(numref>=1) {
+                minus1.disabled="";
+            }
+
+            if(numref<1) {
+                minus100.disabled="true";
+                minus10.disabled="true";
+                minus1.disabled="true";
+            } else if(numref<=9) {
+                minus100.disabled="true";
+                minus10.disabled="true";
+            } else if(numref<=99) {
+                minus100.disabled="true";
+            }
+        }
 
         function addNumBtn(num) {
             let v = document.querySelector("#nums").value;
