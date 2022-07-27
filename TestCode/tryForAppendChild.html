@@ -1,4 +1,10 @@
+<!-- 대표님 말씀 : 띄어쓰기를 주의하라 -->
+
 <!-- 왜 행과 열이 합쳐서 만들어지는지 모르겠음. 각 열을 만드는 for문을 행에 합했는데 -->
+<!-- 선언 위치가 삐끗해서 같은 tr을 한번만 생성하고 td를 때려박은 것임. -->
+<!-- 즉시실행 함수 / table-tr td css는 동반으로 만들어지지 않는다. -->
+<!-- script에서 style 변경 추가할 때 주의할 것. -->
+<!-- 119행에는 버튼 눌러서 행 생성하는 것도 있음 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>실습/appendChild createElement for문</title>
     <style>
-        table {
+        /* table {
             border: 2px solid red;
-        }
+        } */
         tr {
-            border: 1px solid blue;
+            border: 1px solid black;
         }
         td {
-            border: 1px solid violet;
+            border: 1px solid green;
         }
 
     </style>
@@ -38,21 +44,61 @@
             let col = prompt("몇 열을 원하시나요?");
             
             let table = document.createElement("table");
-            let tr = document.createElement("tr");
-            // tr.innerHTML = "행";
             
-            for(j=0;j<Number(col);j++){
-                console.log(j);
-                table.appendChild(tr);
-                for(i=0;i<Number(row);i++){
-                let td = document.createElement("td");
-                td.style.width = '50px';
-                td.style.height = '20px';
-                tr.appendChild(td);
-                }
+            // tr.innerHTML = "행";
+
+            //         let td = document.createElement("td");
+            //         td.style.width = '50px';
+            //         td.style.height = '20px';
+            
+            //         console.log("1");
+            // table.appendChild(tr);
+            // console.log("11");
+            // tr.appendChild(td);
+            // console.log("111");
+            // table.appendChild(tr);
+            // console.log("1111");
+            // tr.appendChild(td);
+            // console.log("1");
+            // tr.appendChild(td);
+            // table.appendChild(tr);
+            // tr.appendChild(td);
+            // tr.appendChild(td);
+            // tr.appendChild(td);
+
+
+
+            // for(j=0;j<3;j++){
+            //     console.log("열 for문 돌리기:",j);
+            //     let tr = document.createElement("tr");
+            //     table.appendChild(tr);
+            //     for(i=0;i<3;i++){
+            //         console.log("행 for문 돌리기:",i);
+            //         let td = document.createElement("td");
+            //         td.style.width = '50px';
+            //         td.style.height = '20px';
+            //         tr.appendChild(td);
+            //     }
+            // }
+
             
                 
+            for(j=0; j<Number(row); j++) {
+                console.log("열 for문 돌리기:" ,j);
+                let tr = document.createElement("tr");
+                table.appendChild(tr);
+                
+                for(i=0; i<Number(col); i++){
+                    
+                    console.log("행 for문 돌리기:", i);
+                    let td = document.createElement("td");
+                    td.style.width = '50px';
+                    td.style.height = '20px';
+                    tr.appendChild(td);
+                }
             }
+                
+                
             
             // }
             
