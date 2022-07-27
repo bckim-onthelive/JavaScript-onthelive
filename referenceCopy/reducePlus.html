@@ -1,0 +1,21 @@
+<!-- 배열 원소를 합연산 하는 기능 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [1, 6, 9];
+
+        const result = arr.reduce(function add(sum, currValue) {
+            return sum + currValue;
+        }, 0);
+
+        document.writeln(result); // 6
+    </script>
+</body>
+</html>
