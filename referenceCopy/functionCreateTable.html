@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>학생정보 입력</title>
+</head>
+<body>
+    <h1> 반자동 테이블 만들기 + 카운트 </h1>
+    
+
+<button onclick="table_make();">테이블 생성</button>
+<script>
+    function table_make() {
+
+        var row = window.prompt("행 개수를 입력하세요.")
+        var col = window.prompt("열 개수를 입력하세요.")
+
+        var count = 1;
+        for(var i = 0; i < row.length; i++){
+            console.log(row[i].length);
+            for(var j = 0; j < col.length; j++){
+
+            }
+        }
+
+        document.write("<table border='1px;'>")
+        for (var i = 0; i < row; i++) {
+            document.write("<tr height='50px'>");
+            for (var j = 0; j < col; j++) {
+                document.write("<td width='50px'>");
+                document.write(count);
+                count++;
+            }
+        }
+        document.write("</td>")
+        document.write("</tr>")
+        document.write("</table>")
+    }
+</script>
+    
+</body>
+</html>
