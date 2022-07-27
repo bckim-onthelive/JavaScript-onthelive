@@ -1,0 +1,98 @@
+<!-- 왜 행과 열이 합쳐서 만들어지는지 모르겠음. 각 열을 만드는 for문을 행에 합했는데 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습/appendChild createElement for문</title>
+    <style>
+        table {
+            border: 2px solid red;
+        }
+        tr {
+            border: 1px solid blue;
+        }
+        td {
+            border: 1px solid violet;
+        }
+
+    </style>
+</head>
+<body id="body">
+    <div id="box"></div>
+    <!-- <button onclick="addTd()">행추가</button>
+    <br><br>
+    <table id="TABLE">
+        <tr id="TR">
+            <td>디폴트</td>
+            <td>디폴트</td>
+            <td>디폴트</td>
+        </tr>
+    </table> -->
+
+    <script>
+        function startMakeTable() {
+            console.log("실행됨");
+            let row = prompt("몇 행을 원하시나요?");
+            let col = prompt("몇 열을 원하시나요?");
+            
+            let table = document.createElement("table");
+            let tr = document.createElement("tr");
+            // tr.innerHTML = "행";
+            
+            for(j=0;j<Number(col);j++){
+                console.log(j);
+                table.appendChild(tr);
+                for(i=0;i<Number(row);i++){
+                let td = document.createElement("td");
+                td.style.width = '50px';
+                td.style.height = '20px';
+                tr.appendChild(td);
+                }
+            
+                
+            }
+            
+            // }
+            
+            let box = document.getElementById("box");
+            box.appendChild(table);
+        };
+
+    //함수 즉시실행 고민1
+        window.onload = startMakeTable();
+
+    //함수 즉시실행 고민2
+        // document.addEventListener('DOMContentLoaded', function (){
+        //     let table = document.createElement("table");
+        //     let tr = document.createElement("tr");
+        //     for(i=0;i<5;i++){
+        //         let td = document.createElement("td");
+        //         tr.appendChild(td);
+        //     }
+        //     table.appendChild(tr);
+        // });
+
+    //버튼 눌러서 행 칸 생성
+        // function addTd() {
+            
+        //     let tr = document.createElement('tr');
+                
+        //     let Table = document.getElementById("TABLE");
+
+        //     for(i=0;i<3;i++) {
+        //         let td = document.createElement('td');
+        //         td.innerHTML="추가";
+        //         tr.appendChild(td);
+        //         //1회 클릭했을 때 td가 3번 추가되는 기능이다.
+        //         //그렇게 만들어진 tr을 for문 외부에서 Table로 삽입하는 것.
+        //     }
+
+        //     Table.appendChild(tr);
+
+            
+        // }
+    </script>
+</body>
+</html>
