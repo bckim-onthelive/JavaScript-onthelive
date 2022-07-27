@@ -1,0 +1,81 @@
+<!--
+Write html and JavaScript code rendering as follows: (30 min, OPENBOOK).
+	•	<table> version & <div> version
+	•	Using image file is not allowed
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오목판 jsp활용</title>
+</head>
+<body>
+    <button onclick="addTable()">실행</button>
+    <br><br>
+    <table id="Table" style="border-collapse: collapse;"></table>
+    
+    <script>
+        function addTable() {
+            // 행과 열 기준을 입력받을 것.
+            let row = prompt("몇 행을 원하십니까?");
+            let col = prompt("몇 열을 원하십니까?");
+
+            // table, tr, td 의 스타일과 생성을 선언하라.
+            let table = document.getElementById(Table);
+            
+            
+                // td.style.borderColor = "green";
+
+            // 반복구문을 활용해 td를 반복 생성해 tr에 삽입하라.
+            
+
+            // 반복구문을 활용해 tr을 생성하라.
+            for(let j = 0; j < Number(row)+1; j++) {
+                let tr = document.createElement("tr");
+                
+                Table.appendChild(tr);
+
+                for(let i = 0; i < Number(col)+1; i++) {
+                let td = document.createElement("td");
+                td.style.width = "50px";
+                td.style.height = "50px";
+                //아래 테두리 css 정의안해주니까 안나옴
+                td.style.border = "2px solid black";
+                tr.appendChild(td);
+                console.log("확인한다.");
+                }
+            }
+            // 28일에 수정 할 일
+            // 조건문 만약 첫번째 행이라면 테두리를 transparent 해서 투명하게 만들고
+            // 숫자를 하단 배치, 우측에 배치한다.
+
+        // 설계한 흔적
+            // // table, tr, td 의 스타일과 생성을 선언하라.
+            // let table = document.getElementById(Table);
+            // let tr = document.createElement(tr);
+            // let td = document.createElement(td);
+            //     td.style.width = "50px";
+            //     td.style.height = "50px";
+            //     // td.style.borderColor = "green";
+
+            // // 반복구문을 활용해 td를 반복 생성해 tr에 삽입하라.
+            // for(let i = 0; i < col; i++) {
+            //     //26-28라인 집어넣기
+            //     tr.appendChild(td);
+            // }
+
+            // // 반복구문을 활용해 tr을 생성하라.
+            // for(let j = 0; j < row; j++) {
+            //     //25라인 넣기
+            //     //32-35라인 넣기
+            //     table.appendChild(tr);
+            // }
+        }
+        // // 자동실행함수
+        // window.onload = addTable();
+        console.log("실행됨");
+    </script>
+</body>
+</html>
