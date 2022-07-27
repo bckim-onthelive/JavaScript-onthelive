@@ -1,0 +1,47 @@
+<!-- 제출된 정수의 약수 합을 구하라. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codeTest1</title>
+</head>
+<body>
+    <button onclick="calculate()">계산하기</button>
+    <script>
+        var answer = 0;
+        function calculate() {
+            var N = window.prompt("정수를 입력하시오");
+            console.log("프롬프트에서 받은 값: ",N);
+            var numN = Number(N);
+            var divisor = new Array();
+            console.log(typeof numN);
+                if(isNaN(numN)){
+                    alert("숫자가 아닙니다.")
+                } else if(numN<=0 || numN>=3000) {
+                    alert("다른 숫자를 기입해주세요");
+                } else {
+                    // alert("감사합니다.")
+                    for(var i=1;i<10;i++){
+                       if(N%i===0){
+                        divisor.push(i);
+                       } else {
+                        continue;
+                       }
+                       console.log(divisor);
+                    }
+                }
+                const result = divisor.reduce(function add(sum, currValue) {
+                    return sum + currValue;
+                }, 0);
+                console.log(result);
+                answer = result;
+                alert("제출된 정수의 약수 합은 "+answer+"입니다.");
+        }
+        
+        
+
+    </script>
+</body>
+</html>
