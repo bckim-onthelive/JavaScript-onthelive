@@ -1,0 +1,54 @@
+<!-- css table / tr td 분리 - 화살표 함수, for문, appendChild -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노드 생성, 추가, for반복</title>
+
+    <style>
+        table{
+            border: 2px solid #03ff;
+        }
+        tr td {
+            border: 1px solid #03ff;
+        }
+
+        /* table tr td 를 같이 넣으면 table border 적용이 안된다. 이유를 모르겠음. */
+    </style>
+
+</head>
+<body>
+
+    <button value="버튼 클릭" class="testbtn">버튼</button>
+
+    <table id="tables"> 
+        <tr>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+        </tr>
+    </table>
+
+    <script>
+        var btn  = document.querySelector('.testbtn');
+
+        btn.addEventListener("click",()=>{
+            //선언
+            var tr =document.createElement('tr');
+            var table = document.querySelector('#tables');
+            //반복문
+            for(var i = 0; i<5; i++){
+                var td =document.createElement('td');
+                td.innerHTML="test";
+                tr.appendChild(td);
+            }
+            console.log(table);
+
+            table.appendChild(tr);
+        });
+    </script>
+    
+</body>
+</html>
