@@ -1,0 +1,28 @@
+<!-- circle div에 position: absolute 안주고 실행오류를 찾고 있었음. -->
+<!-- 이벤트 핸들러는 event를 인수로 받는다고 한다. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>MoveEvent</title>
+</head>
+<body>
+    <div id="box" style="width: 100px; height: 100px; border: 2px solid red; position: relative;">
+        <div id="circle" style="width: 10px; height: 10px; border-radius: 50%; background-color: black; position: absolute;"></div>
+    </div>
+    <script>
+        const box = document.getElementById("box");
+        const circle = document.getElementById("circle");
+
+        box.addEventListener("mousemove", event=>{
+            circle.style.top = `${event.clientY}px`;
+            circle.style.left = `${event.clientX}px`;
+        });
+        // box.addEventListener("mousemove", event => {
+        //     console.log(event);
+        // });
+    </script>
+</body>
+</html>
