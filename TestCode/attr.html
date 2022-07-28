@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title1 {
+            color : red;
+        }
+    </style>
+</head>
+<body>
+    <h1>제목1</h1>
+    <button onclick="change()">실행</button>
+
+    <script>
+        console.log(document.getElementsByClassName("h1"));
+        function change(){
+            var H1 = document.getElementsByTagName("h1")[0];
+            //여기 있는 [0] 은 무슨 의미일까. undefined 인데?
+            //[0] 이 없으면 HTMLCollection[] 이 나온다.
+            var Attr = document.createAttribute("class");
+            Attr.value = "title1";
+            H1.setAttributeNode(Attr);
+        }
+    </script>
+</body>
+</html>
+
+<!-- 제목1의 색상을 바꾸는 함수 -->
+<!-- class에 색상을 부여하고 -->
+<!-- 제목1의 정보를 H1에 담았다. -->
+<!-- 그런데 [0] 이 없으면 안된다. 왜 그렇지? -->
+<!-- Attr에 class생성 정보를 담았고 -->
+<!-- Attr의 값에 부여할 class의 이름을 담았다. -->
+<!-- 제목1의 정보를 가진 H1에 Attr(클래스생성, 클래스이름)을 부여했다. -->
+<!-- 그리고 함수 실행을 담은 버튼을 누르면 클래스가 부여되고 제목1의 색상이 바뀌었다. -->
