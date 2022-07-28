@@ -16,14 +16,15 @@
     <button onclick="change()">실행</button>
 
     <script>
-        console.log(document.getElementsByClassName("h1"));
         function change(){
-            var H1 = document.getElementsByTagName("h1")[0];
+            var H1 = document.getElementsByTagName("h1");
             //여기 있는 [0] 은 무슨 의미일까. undefined 인데?
+            console.log("H1 : ", H1);
             //[0] 이 없으면 HTMLCollection[] 이 나온다.
             var Attr = document.createAttribute("class");
             Attr.value = "title1";
-            H1.setAttributeNode(Attr);
+            H1[0].setAttributeNode(Attr);
+            console.log("H1 @@: ", H1);
         }
     </script>
 </body>
