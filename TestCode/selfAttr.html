@@ -21,7 +21,13 @@
     <script>
         function changeColor() {
             let H1 = document.getElementsByTagName("h1")[0];
-            //TagName[0] 의미파악 불가
+
+            console.log("tag: ",document.getElementsByTagName("h1"));
+            console.log("tag[index]: ",document.getElementsByTagName("h1")[0]);
+            console.log("H1 : ",H1);
+
+            //TagName[0] 의미파악
+            //list화 된 내용의 0번쨰 인덱스 값인 H1을 가져온 것.
             let Attr = document.createAttribute("class");
             Attr.value = "TITLE";
             H1.setAttributeNode(Attr);
