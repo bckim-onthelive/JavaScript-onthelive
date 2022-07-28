@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>몰루</title>
+    <style>
+        td {
+            border: 20px solid;
+            /* width: 100px;
+            height: 100px; */
+            color: blue;
+        }
+
+        /* tr {
+            color: green;
+        } */
+    </style>
+</head>
+<body>
+    <button onclick="start()">시작</button>
+    <br><br>
+    <table id="Table" style="border-collapse: collapse;">
+        
+    </table>
+    
+    <!-- id, 열행만들기: 앞글자 대문자 / 변수, 태그의 정보가져오기: 소문자 -->
+    <!-- 얘는 함수에 있는 css반영안하고 style태그에 있는 css만 반영하네. -->
+    <script>
+        function start() {
+            let Td = document.createElement("td");
+            Td.style.width = "50px";
+            Td.style.height = "100px";
+            // Td.style.border = "20px soild";
+            Td.style.borderColor = "black";
+            let Tr = document.createElement("tr");
+            // Tr.style.border = "5px solid green"
+            // Td.style.borderColor = "red";
+            Tr.appendChild(Td);
+            Table.appendChild(Tr);    
+        }
+        
+
+    </script>
+</body>
+</html>
