@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppendChild</title>
 </head>
-<body>
+<body id="bebe">
     <!-- <button onclick="addAppend()">add</button>
     <table style="border: 1px black solid; width: 500px; height: 500px;">
         <tr id="tableMain">
@@ -27,21 +27,50 @@
         // let createTBody = document.createElement('td');
         // createTable.appendChild(createTrow.appendChild(createTBody));
         // document.body.appendChild(createTable);
-        let inputButton = document.createElement('input');
-        document.body.appendChild(inputButton);
-        let makeTable = document.createElement('table');
-        let makeTr = document.createElement('tr');
-        let makeTd = document.createElement('td');
-        let textInTd = document.createTextNode("hello");
-        makeTd.appendChild(textInTd);
-        makeTd.setAttribute("border", "solid 1px black");
-        makeTr.appendChild(makeTd);
-        makeTable.appendChild(makeTr);
-        document.body.appendChild(makeTable);
+        // let inputButton = document.createElement('input');
+        // document.body.appendChild(inputButton);
+        // inputButton.style.borderColor = 'red';
+        // let makeTable = document.createElement('table');
+        // let makeTr = document.createElement('tr');
+        // let makeTd = document.createElement('td');
+        // let textInTd = document.createTextNode("hello");
+        // makeTd.appendChild(textInTd);
+        // // makeTd.style.borderColor='red';
+        // makeTr.appendChild(makeTd);
+        // makeTable.appendChild(makeTr);
+        // makeTable.style.borderColor='red';
+        // document.body.appendChild(makeTable);
+
+        //넣을 텍스트
+        // let guide = 1;
+        // let td = document.createElement('TD');
+        //     td.innerHTML = guide;
+        //     td.style.border = '1px solid red';
+        //     td.style.padding = '3px';
+        // let tr = document.createElement('TR');
+        //     tr.appendChild(td);
+        // let table = document.createElement('TABLE');
+        //     table.appendChild(tr);
+        // bebe.appendChild(table);
+        //일반 태그, class 태그는 부모노드로 소환되지 않는다?
+        //id값을 호출했을 때 되더라.
+
+        let text = 1;
+        let td = document.createElement('TD');
+            td.innerHTML = text;
+            td.style.border = '1px solid blue';
+            td.style.padding = '3px';
+        let tr = document.createElement('TR');
+            tr.appendChild(td);
+        let table = document.createElement('TABLE');
+            table.appendChild(tr);
+        bebe.appendChild(table);
 
         // for(i=0;i<2;i++) {
 
         // }
+
+        
     </script>
 </body>
 </html>
