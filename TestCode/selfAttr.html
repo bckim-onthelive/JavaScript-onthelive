@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Attribute</title>
+    <style>
+        .TITLE {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Title</h1>
+    <br><br>
+    <button onclick="changeColor()">실행</button>
+
+    <script>
+        function changeColor() {
+            let H1 = document.getElementsByTagName("h1")[0];
+            //TagName[0] 의미파악 불가
+            let Attr = document.createAttribute("class");
+            Attr.value = "TITLE";
+            H1.setAttributeNode(Attr);
+        }
+    </script>
+</body>
+
+</html>
