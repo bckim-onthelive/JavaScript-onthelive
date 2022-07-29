@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>몰루</title>
+    <title>td Style Test</title>
     <style>
         td {
-            border: 2px solid;
+            border: 10px solid;
             width: 100px;
             height: 100px;
             color: blue;
         }
 
-        /* tr {
+        tr {
             color: green;
-        } */
+        }
     </style>
 </head>
+
 <body>
     <button onclick="start()">시작</button>
     <br><br>
-    <table id="Table" style="border-collapse: collapse;">
-        
-    </table>
-    
+    <table id="Table" style="border-collapse: collapse; background-color: aqua;"></table>
+
     <!-- id, 열행만들기: 앞글자 대문자 / 변수, 태그의 정보가져오기: 소문자 -->
     <!-- 얘는 함수에 있는 css반영안하고 style태그에 있는 css만 반영하네. -->
+    <!-- 디자인 반영 우선순위 인라인 => style 태그 -->
     <script>
-        let Tr = document.createElement("tr");
-            Table.appendChild(Tr); 
         function start() {
+            let row = prompt("몇 행?");
+            let col = prompt("몇 열?");
+
             
-            let Td = document.createElement("td");
-            Td.style.width = "50px";
-            Td.style.height = "100px";
-            // Td.style.border = "2px soild";
-            // Td.style.borderColor = "black";
+            for(let j = 0; j < Number(col)+1; j++) {
+                let tr = document.createElement("tr");
+                for(let i = 0; i < Number(row)+1; i++) {
+                    
+                    let td = document.createElement("td");
+                    
+                    td.style.width = "50px";
+                    td.style.height = "100px";
+                    if(i==0){
+                        td.style.border.left = "transparent";
+                        td.style.border.top = "transparent";
+                        td.style.border.bottom = "transparent";
+                    } else {
+                        td.style.border = "2px soild";
+                    }
+                    tr.appendChild(td);
+                    
+                }
+                Table.appendChild(tr);
+            }
+            
+            
+            
             
             // Tr.style.border = "5px solid green"
             // Td.style.borderColor = "red";
-            Tr.appendChild(Td);
-               
+            
         }
-        // if(i==0){
-        //     Td.style.border.left = "transparent";
-        //     Td.style.border.top = "transparent";
-        //     Td.style.border.bottom = "transparent";
-        // }
+        
 
     </script>
 </body>
+
 </html>
