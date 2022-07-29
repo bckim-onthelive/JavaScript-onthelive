@@ -1,0 +1,21 @@
+<!-- window resize 화살표 함수 -->
+<!-- window의 너비 높이 메서드 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codingDevil - window.resize</title>
+</head>
+<body>
+    <script>
+        window.addEventListener("resize", () => {
+            document.body.innerText = `현재 창 크기는 ${window.innerWidth} x ${window.innerHeight}`;
+        });
+        //window의 사이즈조절 이벤트를 받아서 화살표 함수로 실행
+        //문서 바디의 텍스트로 `현재 창 크기는 `(백틱이 있어 ${window.innerWidth}) 특수문자 쓸 수 있음
+    </script>
+</body>
+</html>
