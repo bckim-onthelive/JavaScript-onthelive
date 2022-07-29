@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewrite Window Resize</title>
+</head>
+<body>
+    <script>
+        window.addEventListener("resize", () => {
+            document.body.innerText = `현재 창의 크기는 ${window.innerWidth} x ${window.innerHeight} 입니다.`
+        });
+        //화면에서 사이즈 조절 이벤트를 받고 실행문을 돌린다.
+        //본문 바디에 텍스트를 넣는데
+        //window.innerWidth/Height 메서드를 활용해 자동 변환 반영하도록 한다.
+    </script>
+</body>
+</html>
