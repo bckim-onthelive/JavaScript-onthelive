@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Td-Style Test</title>
+</head>
+<style>
+    /* .tr {
+        border: 1px bold red;
+    }
+
+    .td {
+        border: 1px solid black;
+    } */
+</style>
+
+<body>
+    <button id="start" onclick="addTable(3,3)">실행</button>
+    <button id="start" onclick="addTr(newTable)">실행</button>
+    <button id="start" onclick="addTd(newTable, addTr(newTable))">실행</button>
+    <br><br>
+    <table id="newTable" style="width: auto; height: auto; background-color: aqua;"></table>
+
+    <script>
+        // 사용자의 입력을 다른 함수에서 사용할 수 있게 반환하는 function
+        function askUserAnswer() {
+            let row = prompt("몇 행을 원하십니까?");
+            let col = prompt("몇 열을 원하십니까?");
+            addTable(row, col);
+        }
+        function addTable(row, col) {
+            // 반환 값을 console.log 로 찍어봄
+            console.log("row :", row);
+            console.log("col :", col);
+
+            let tr = addTr(newTable);
+
+            addTd(newTable, tr);
+            console.log("addTable : let tr =>", tr);
+        }
+        function addTr(Table) {
+            let tr = document.createElement("tr");
+            tr.style.width = '100px';
+            tr.style.height = '100px';
+            tr.style.backgroundColor = 'yellow';
+            Table.appendChild(tr);
+            console.log("addTr : tr =>", tr);
+            return tr;
+        }
+        function addTd(Table, tr) {
+            console.log("addTd : tr =>", tr);
+            let td = document.createElement("td");
+            td.style.border = "5px solid gray";
+            td.style.height = "50px";
+            td.style.width = "50px";
+            tr.appendChild(td);
+        }
+
+    </script>
+</body>
+
+</html>
