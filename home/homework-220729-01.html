@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3차 오목판</title>
+</head>
+<body>
+    <button onclick="addTable()">start</button>
+    <!-- id는 앞글자 대문자, 태그는 올소문자,  -->
+    <table id="Table"></table>
+
+    <script>
+        function addTable() {
+            let row = prompt("몇 행?");
+            let col = prompt("몇 열?");
+
+            let TR = document.createElement('tr');
+            let TD = document.createElement('td');
+            Table.appendChild(TR);
+            TR.appendChild(TD);
+            
+            // 18line 대신 대체가능하다.
+            // Table.appendChild(document.createElement('tr'));
+            
+            // 위의 appendChild는 작동하지만 변수 선언없는 아래의 대입은 진행되지 않았다.
+            // document.createElement('tr').appendChild(document.createElement('td'));
+        }
+    </script>
+</body>
+</html>
