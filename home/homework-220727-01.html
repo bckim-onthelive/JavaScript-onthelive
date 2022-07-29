@@ -5,6 +5,7 @@ Write html and JavaScript code rendering as follows: (30 min, OPENBOOK).
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,11 +20,12 @@ Write html and JavaScript code rendering as follows: (30 min, OPENBOOK).
         }
     </style> -->
 </head>
+
 <body>
     <button onclick="addTable()">실행</button>
     <br><br>
     <table id="Table" style="border-collapse: collapse;"></table>
-    
+
     <script>
         function addTable() {
             // 행과 열 기준을 입력받을 것.
@@ -31,23 +33,23 @@ Write html and JavaScript code rendering as follows: (30 min, OPENBOOK).
             let col = prompt("몇 열을 원하십니까?");
 
             // table, tr, td 의 스타일과 생성을 선언하라.
-            let table = document.getElementById(Table);
-            
-            
-                // td.style.borderColor = "green";
+            let table = document.getElementById("Table");
+
+
+            // td.style.borderColor = "green";
 
             // 반복구문을 활용해 td를 반복 생성해 tr에 삽입하라.
-            
-        // id, 열행만들기: 앞글자 대문자 / 변수, 태그의 정보가져오기: 소문자 
-        
+
+            // id, 열행만들기: 앞글자 대문자 / 변수, 태그의 정보가져오기: 소문자 
+
             // 반복구문을 활용해 tr을 생성하라.
-            for(let j = 0; j < Number(row)+1; j++) {
+            for (let j = 0; j < Number(row) + 1; j++) {
                 let Tr = document.createElement("tr");
 
                 Table.appendChild(Tr);
-                console.log("row add",j);
+                console.log("row add", j);
 
-                for(let i = 0; i < Number(col)+1; i++) {
+                for (let i = 0; i < Number(col) + 1; i++) {
                     let Td = document.createElement("td");
 
                     // Td common style
@@ -64,14 +66,14 @@ Write html and JavaScript code rendering as follows: (30 min, OPENBOOK).
                         Td.style.border = "2px solid green";
                     }
                     Tr.appendChild(Td);
-                    console.log("column add",i+1);
+                    console.log("column add", i + 1);
                 }
-                
+
             }
 
             // Td.style.border.left = "transparent";
-                // Td.style.border.top = "transparent";
-                // Td.style.border.bottom = "transparent";
+            // Td.style.border.top = "transparent";
+            // Td.style.border.bottom = "transparent";
 
 
 
@@ -80,8 +82,8 @@ Write html and JavaScript code rendering as follows: (30 min, OPENBOOK).
             // 조건문 만약 첫번째 행이라면 테두리를 transparent 해서 투명하게 만들고
             // 숫자를 하단 배치, 우측에 배치한다.
 
-            
-        // 설계한 흔적
+
+            // 설계한 흔적
             // // table, tr, td 의 스타일과 생성을 선언하라.
             // let table = document.getElementById(Table);
             // let tr = document.createElement(tr);
@@ -108,4 +110,5 @@ Write html and JavaScript code rendering as follows: (30 min, OPENBOOK).
         console.log("실행됨");
     </script>
 </body>
+
 </html>
