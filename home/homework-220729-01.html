@@ -5,27 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3차 오목판</title>
+    <style>
+
+    </style>
 </head>
 <body>
     <button onclick="addTable()">start</button>
     <!-- id는 앞글자 대문자, 태그는 올소문자,  -->
-    <table id="Table"></table>
+    <table id="Table" style="border-collapse: collapse;"></table>
 
     <script>
         function addTable() {
             let row = prompt("몇 행?");
             let col = prompt("몇 열?");
 
-            let TR = document.createElement('tr');
-            let TD = document.createElement('td');
-            Table.appendChild(TR);
-            TR.appendChild(TD);
-            
-            // 18line 대신 대체가능하다.
-            // Table.appendChild(document.createElement('tr'));
-            
-            // 위의 appendChild는 작동하지만 변수 선언없는 아래의 대입은 진행되지 않았다.
-            // document.createElement('tr').appendChild(document.createElement('td'));
+            for(let j = 0; j < Number(row); j++) {
+                let TR = document.createElement('tr');
+                for(let i = 0; i < Number(col); i++) {
+                    let TD = document.createElement('td');
+                    TR.appendChild(TD);
+                    TD.style.width = "50px";
+                    TD.style.height = "50px";
+                    TD.style.textAlign = "right";
+                    TD.style.verticalAlign = "bottom";
+                    if(i == 0 && j == 0) {
+                        TD.style.border = "transparent";
+                    } else if(i == 0) {
+                        TD.setAttribute("class", "CoordinateNum");
+                        TD.innerText = j;   
+                        TD.style.paddingRight = "10px";
+                    } else if(j == 0) {
+                        TD.setAttribute("class", "CoordinateEn");
+                        TD.innerText = String.fromCharCode(96+i);
+                        TD.style.paddingBottom = "3px";
+                    } else {
+                        TD.style.border = "2px solid black";
+                    }
+                }
+                Table.appendChild(TR);
+            }
         }
     </script>
 </body>
