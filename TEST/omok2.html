@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMOK2</title>
+    <style>
+        td {
+            border: 2px solid black;
+            width: 50px;
+            height: 50px;
+        }
+        sup {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick = "makeTable()">오목판 만들기</button>
+    <br><br>
+    <div id = "Main" style = "display: inline-block; padding-right: 30px; padding-bottom: 30px;">
+        <table id = "Table" style = "border-collapse: collapse;"></table>
+    </div>
+
+    <script>
+        function makeTable() {
+            let row = prompt("몇 행을 원하는 가");
+            let col = prompt("몇 열을 원하는 가");
+            Main.style.backgroundColor = "#d37313";
+            
+            for(let j = 0; j < Number(row) + 1; j++) {
+                let TR = document.createElement('tr');
+
+                for(let i = 0; i < Number(col) + 1; i++) {
+                    let TD = document.createElement('td');
+                    
+                    if(j == 0 || i == 0) {
+                        // let trAttr = document.createAttribute("class")
+                        // trAttr.value = "firstTr";
+                        // TR.setAttribute(trAttr);
+                        TD.style.border = "transparent";
+                        TD.style.textAlign = "right";
+                        TD.style.verticalAlign = "bottom";
+                        TD.style.paddingRight = "5px";
+                        
+                        if(j == 0) {
+                            TD.innerHTML = String.fromCharCode(65+Number(i));
+                            if(TD.innerHTML > "H") {
+                                TD.innerHTML = String.fromCharCode(66+Number(i));
+                            }
+                        }
+                        if(i == 0) {
+                            TD.innerHTML = Number(row)-j+1;
+                        }
+                        if(j == 0 && i == 0) {
+                            TD.innerHTML = (Number(row)+1)+"<sup>"+"A";
+                        }
+                    }
+                    TR.appendChild(TD);
+                }
+
+                Table.appendChild(TR);
+            }
+        }
+    </script>
+</body>
+</html>
