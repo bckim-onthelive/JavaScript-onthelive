@@ -6,13 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3차 오목판</title>
     <style>
-
+        .TAble {
+            border-collapse: separate;
+            position: relative;
+            border-spacing: 1000px;
+            left: 1000px;
+            /* padding-left: 100px;
+            padding-bottom: 100px; */
+        }
     </style>
 </head>
 <body>
     <button onclick="addTable()">start</button>
     <!-- id는 앞글자 대문자, 태그는 올소문자,  -->
-    <table id="Table" style="border-collapse: collapse;"></table>
+    <table id="Table" style="border-collapse: collapse; position: relative;"></table>
+    <table id="TAble"></table>
+    
 
     <script>
         function addTable() {
@@ -43,6 +52,23 @@
                     }
                 }
                 Table.appendChild(TR);
+            }
+            addCloneTable(row, col);
+        }
+
+        function addCloneTable(row, col) {
+            for(let k = 0; k < Number(row)-2; k++) {
+                let TR = document.createElement('tr');
+                for(let l = 0; l < Number(col)-2; l++) {
+                    let TD = document.createElement('td');
+                    TR.appendChild(TD);
+                    // TD.style.width = "1px";
+                    // TD.style.height = "1px";
+                    TD.style.border = "20px solid red";
+                    TD.style.backgroundColor = "red";
+                    TD.style.borderRadius = "100px";
+                }
+                TAble.appendChild(TR);
             }
         }
     </script>
