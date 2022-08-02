@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMOK3</title>
+    <style>
+        td {
+            border: 2px solid black;
+            width: 50px;
+            height: 50px;
+        }
+        sup {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick = "makeTable()">오목판 만들기</button>
+    <br><br>
+    <div id = "Main" style = "position: relative; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
+        <table id = "Table" style = "border-collapse: collapse;"></table>
+        <table id = "Table2" onclick="mouseDown()" style = "position: absolute; top: 18px; left: 20px; border-spacing: 21px 17px;"></table>
+    </div>
+
+    <script>
+        function makeTable() {
+            let row = prompt("몇 행을 원하는 가");
+            let col = prompt("몇 열을 원하는 가");
+            Main.style.backgroundColor = "#d37313";
+            
+            for(let j = 0; j < Number(row) + 1; j++) {
+                let TR = document.createElement('tr');
+
+                for(let i = 0; i < Number(col) + 1; i++) {
+                    let TD = document.createElement('td');
+                    
+                    if(j == 0 || i == 0) {
+                        // let trAttr = document.createAttribute("class")
+                        // trAttr.value = "firstTr";
+                        // TR.setAttribute(trAttr);
+                        TD.style.border = "transparent";
+                        
+                        TD.style.paddingRight = "5px";
+                        
+                        if(j == 0) {
+                            TD.innerHTML = String.fromCharCode(65+Number(i));
+                            if(TD.innerHTML > "H") {
+                                TD.innerHTML = String.fromCharCode(66+Number(i));
+                            }
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "middle";
+                        }
+                        if(i == 0) {
+                            TD.innerHTML = Number(row)-j+1;
+                            TD.style.textAlign = "center";
+                            TD.style.verticalAlign = "bottom";
+                        }
+                        if(j == 0 && i == 0) {
+                            TD.innerHTML = (Number(row)+1)+"<sup>"+"A";
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "bottom";
+                        }
+                    }
+                    TR.appendChild(TD);
+                }
+                Table.appendChild(TR);
+            }
+            makeCloneTable(row, col);
+        }
+
+        function makeCloneTable(row, col) {
+            for(let k = 0; k < Number(row)+1; k++) {
+                let TR = document.createElement('tr');
+                
+                for(let l = 0; l < Number(col)+1; l++) {
+                    let TD = document.createElement('td');
+                    let Attr = document.createAttribute("class");
+                    Attr.value = "stone"+l+k;
+                    TD.setAttributeNode(Attr);
+                    TR.appendChild(TD);
+                    TD.style.border = "5px solid black";
+                    TD.style.backgroundColor = "black";
+                    // transparent
+                    TD.style.borderRadius = "50px";
+                    TD.style.width = "25px";
+                    TD.style.height = "25px";
+                }
+                Table2.appendChild(TR);
+            }
+        }
+        // Table2.addEventListener("mousedown", event => {
+        //     // for(var count = 0; count > 0; count++) {
+        //         let l = 0;
+        //         let k = 0;
+        //         var count = 0;
+        //         console.log("된다.");
+        //     //     TD.style.border = "black";
+        //     //     TD.style.backgroundColor = "black";
+        //         if(count%2==0) {
+        //             document.querySelector(".stone"+l+k).style.backgroundColor = "black";
+        //             console.log("l : " + l + "k : " + k + "count : " + count);
+        //             } else {
+        //                 document.querySelector(".stone"+l+k).style.backgroundColor = "white";
+        //                 console.log("l : " + l + "k : " + k + "count : " + count);
+        //             }
+        //         count++
+        //         k++;
+        //         l++;
+        //     });
+        // });
+        function mouseDown() {
+            for(let count = 0; count < 20; count++) {
+                let l = 0;
+                let k = 0;
+                console.log(document.querySelector(".stone"+l+k));
+
+                l += 1;
+                k += 1;
+            }
+            
+        };
+    </script>
+</body>
+</html>
