@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMOK4</title>
+    <style>
+        /* .Table2 {
+            
+        } */
+        td {
+            border: 2px solid black;
+            width: 50px;
+            height: 50px;
+        }
+        sup {
+            font-size: 15px;
+        }
+        .tdText, .tdText2 {
+            color: white;
+            font-size: 20px;
+            border: transparent;
+        }
+        .tdText {
+            color: orange;
+            vertical-align: middle;
+            width: 5px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick = "makeTable()">오목판 만들기</button>
+    <br><br>
+    <div style="position: relative;">
+        <div id = "Main" style = "position: relative; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
+            <table id = "Table" style = "border-collapse: collapse;"></table>
+            <table id = "Table2" style = "position: absolute; top: 18px; left: 17px; border-spacing: 24px 23px;"></table>
+            <!-- width: 1140px; height: 1000px -->
+        </div>
+        <div style="width: 2000px; height: 1500px; background-color: blue; position: absolute; top: -10px; z-index: -1;">
+            <div style="margin-left: 1200px; color: white;">
+                <h1>텐초목</h1>
+                <span>10초안에 두지 않으면 기회는 상대편에게 ~</span>
+                <br><br>
+                <table style="border-collapse: collapse; width: 300px; height: 300px;">
+                    <tr>
+                        <td class="tdText">현<br>황</td>
+                        <td class="tdText2">
+                            놓여진 돌의 개수 : 
+                            <br> 백돌 : 
+                            <br> 전체경과시간 :
+                            <br> 백돌소요시간 :
+                            <br> 흑돌소요시간 :
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdText">다<br>음</td>
+                        <td class="tdText2">
+                            순서 :
+                            <br> 이번경과시간 :
+                            <br> 남은시간 : 
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function makeTable() {
+            let row = prompt("몇 행을 원하는 가");
+            let col = prompt("몇 열을 원하는 가");
+            Main.style.backgroundColor = "#d37313";
+            
+            for(let j = 0; j < Number(row) + 1; j++) {
+                let TR = document.createElement('tr');
+
+                for(let i = 0; i < Number(col) + 1; i++) {
+                    let TD = document.createElement('td');
+                    
+                    if(j == 0 || i == 0) {
+                        // let trAttr = document.createAttribute("class")
+                        // trAttr.value = "firstTr";
+                        // TR.setAttribute(trAttr);
+                        TD.style.border = "transparent";
+                        
+                        TD.style.paddingRight = "5px";
+                        
+                        if(j == 0) {
+                            TD.innerHTML = String.fromCharCode(65+Number(i));
+                            if(TD.innerHTML > "H") {
+                                TD.innerHTML = String.fromCharCode(66+Number(i));
+                            }
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "middle";
+                        }
+                        if(i == 0) {
+                            TD.innerHTML = Number(row)-j+1;
+                            TD.style.textAlign = "center";
+                            TD.style.verticalAlign = "bottom";
+                        }
+                        if(j == 0 && i == 0) {
+                            TD.innerHTML = (Number(row)+1)+"<sup>"+"A";
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "bottom";
+                        }
+                    }
+                    TR.appendChild(TD);
+                }
+                Table.appendChild(TR);
+            }
+            makeCloneTable(row, col);
+        }
+
+        function makeCloneTable(row, col) {
+            for(let k = 0; k < Number(row)+1; k++) {
+                let TR = document.createElement('tr');
+                
+                for(let l = 0; l < Number(col)+1; l++) {
+                    let TD = document.createElement('td');
+                    let Attr = document.createAttribute("class");
+                    Attr.value = "stone"+l+k;
+                    TD.setAttributeNode(Attr);
+                    TR.appendChild(TD);
+                    TD.style.border = "2px solid transparent";
+                    TD.style.backgroundColor = "transparent";
+                    // transparent
+                    TD.style.borderRadius = "50px";
+                    TD.style.width = "25px";
+                    TD.style.height = "25px";
+                }
+                Table2.appendChild(TR);
+            }
+        }
+        // 최초 도전
+        // let l = 0;
+        // let k = 0;
+        // var count = 0; 
+        // Table2.addEventListener("mousedown", event => {
+        //     // for(var count = 0; count > 0; count++) {
+                
+        //         console.log("된다.");
+        //     //     TD.style.border = "black";
+        //     //     TD.style.backgroundColor = "black";
+        //         if(count%2==0) {
+        //             document.querySelector(".stone"+l+k).style.backgroundColor = "black";
+        //             console.log("l : " + l + "k : " + k + "count : " + count);
+        //             } else {
+        //                 document.querySelector(".stone"+l+k).style.backgroundColor = "white";
+        //                 console.log("l : " + l + "k : " + k + "count : " + count);
+        //             }
+        //         count++
+        //         k++;
+        //         l++;
+        //     });
+
+        // let count = 0;
+        // function mouseDown() {
+            
+        //     count += 1;
+        //     console.log(count);
+            
+        // };
+            let count = 0
+        Table2.addEventListener("click", function(e) {
+            // console.log("타겟 : ", e.target);
+            if(e.target.id=="Table2") {
+                console.log("실패");
+            } else {
+                if(count%2==0) {
+                    e.target.style.backgroundColor = "black";
+                    e.target.innerHTML = count+1;
+                    // e.target.style.textAlign = center;
+                    e.target.style.color = "white";
+                    console.log("ID값", e.target.id);
+                    console.log("CLASS값", e.target.class);
+                } else {
+                    e.target.style.backgroundColor = "white";
+                    e.target.style.borderColor = "black";
+                    e.target.innerHTML = count+1;
+                    e.target.style.color = "black";   
+                    console.log("ID값", e.target.id);
+                    console.log("CLASS값", e.target.class);
+                }
+            
+                count++;
+                }
+            });
+    </script>
+</body>
+</html>
