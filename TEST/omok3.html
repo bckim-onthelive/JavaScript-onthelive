@@ -90,26 +90,28 @@
                 Table2.appendChild(TR);
             }
         }
-        // Table2.addEventListener("mousedown", event => {
-        //     // for(var count = 0; count > 0; count++) {
-        //         let l = 0;
-        //         let k = 0;
-        //         var count = 0;
-        //         console.log("된다.");
-        //     //     TD.style.border = "black";
-        //     //     TD.style.backgroundColor = "black";
-        //         if(count%2==0) {
-        //             document.querySelector(".stone"+l+k).style.backgroundColor = "black";
-        //             console.log("l : " + l + "k : " + k + "count : " + count);
-        //             } else {
-        //                 document.querySelector(".stone"+l+k).style.backgroundColor = "white";
-        //                 console.log("l : " + l + "k : " + k + "count : " + count);
-        //             }
-        //         count++
-        //         k++;
-        //         l++;
-        //     });
-        // });
+        // 최초 도전 
+        Table2.addEventListener("mousedown", event => {
+            // for(var count = 0; count > 0; count++) {
+                let l = 0;
+                let k = 0;
+                var count = 0;
+                console.log("된다.");
+            //     TD.style.border = "black";
+            //     TD.style.backgroundColor = "black";
+                if(count%2==0) {
+                    document.querySelector(".stone"+l+k).style.backgroundColor = "black";
+                    console.log("l : " + l + "k : " + k + "count : " + count);
+                    } else {
+                        document.querySelector(".stone"+l+k).style.backgroundColor = "white";
+                        console.log("l : " + l + "k : " + k + "count : " + count);
+                    }
+                count++
+                k++;
+                l++;
+            });
+            
+
         function mouseDown() {
             for(let count = 0; count < 20; count++) {
                 let l = 0;

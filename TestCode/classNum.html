@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="star" onmousedown="checkNum()" style="width: 500px; height: 500px; background-color: blue;">
+        <div class="star1" style="width: 200px; height: 200px; background-color: red;"></div>
+    </div>
+    <script>
+        // for(let i = 0; i < 4; i++) {
+        //     let makeBtn = document.createElement("input");
+        //     let Attr = document.createAttribute("class")
+        //     Attr.value = "Btn"+i;
+        //     star.appendChild(makeBtn);
+        // }
+        const STar = document.querySelector(".star");
+        // STar.addEventListener("mousedown", (event) => {
+        //     // console.log();
+        // })
+        //mousedown 된 좌표를 범주화해서 class를 선택하고 배경 색을 주도록.
+        function checkNum() {
+            // console.log("세로 : "+`${event.clientY}px`, "가로 : "+`${event.clientX}px`);
+            if(event.clientY > 200 && event.clientY < 300) {
+                if(event.clientX > 200 && event.clientX <300) {
+                    console.log("세로 : "+`${event.clientY}px`, "가로 : "+`${event.clientX}px`);
+                    let DIV = document.querySelector(".star1");
+                    DIV.style.backgrounColor = "white";
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
