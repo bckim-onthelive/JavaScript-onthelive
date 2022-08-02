@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OMOK3</title>
     <style>
+        /* .Table2 {
+            
+        } */
         td {
             border: 2px solid black;
             width: 50px;
@@ -21,7 +24,8 @@
     <br><br>
     <div id = "Main" style = "position: relative; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
         <table id = "Table" style = "border-collapse: collapse;"></table>
-        <table id = "Table2" onclick="mouseDown()" style = "position: absolute; top: 18px; left: 20px; border-spacing: 21px 17px;"></table>
+        <table id = "Table2" style = "position: absolute; top: 18px; left: 17px; border-spacing: 24px 23px;"></table>
+        <!-- width: 1140px; height: 1000px -->
     </div>
 
     <script>
@@ -80,8 +84,8 @@
                     Attr.value = "stone"+l+k;
                     TD.setAttributeNode(Attr);
                     TR.appendChild(TD);
-                    TD.style.border = "5px solid black";
-                    TD.style.backgroundColor = "black";
+                    TD.style.border = "2px solid transparent";
+                    TD.style.backgroundColor = "transparent";
                     // transparent
                     TD.style.borderRadius = "50px";
                     TD.style.width = "25px";
@@ -90,39 +94,60 @@
                 Table2.appendChild(TR);
             }
         }
-        // 최초 도전 
-        Table2.addEventListener("mousedown", event => {
-            // for(var count = 0; count > 0; count++) {
-                let l = 0;
-                let k = 0;
-                var count = 0;
-                console.log("된다.");
-            //     TD.style.border = "black";
-            //     TD.style.backgroundColor = "black";
+        // 최초 도전
+        // let l = 0;
+        // let k = 0;
+        // var count = 0; 
+        // Table2.addEventListener("mousedown", event => {
+        //     // for(var count = 0; count > 0; count++) {
+                
+        //         console.log("된다.");
+        //     //     TD.style.border = "black";
+        //     //     TD.style.backgroundColor = "black";
+        //         if(count%2==0) {
+        //             document.querySelector(".stone"+l+k).style.backgroundColor = "black";
+        //             console.log("l : " + l + "k : " + k + "count : " + count);
+        //             } else {
+        //                 document.querySelector(".stone"+l+k).style.backgroundColor = "white";
+        //                 console.log("l : " + l + "k : " + k + "count : " + count);
+        //             }
+        //         count++
+        //         k++;
+        //         l++;
+        //     });
+
+        // let count = 0;
+        // function mouseDown() {
+            
+        //     count += 1;
+        //     console.log(count);
+            
+        // };
+            let count = 0
+        Table2.addEventListener("click", function(e) {
+            // console.log("타겟 : ", e.target);
+            if(e.target.id=="Table2") {
+                console.log("실패");
+            } else {
                 if(count%2==0) {
-                    document.querySelector(".stone"+l+k).style.backgroundColor = "black";
-                    console.log("l : " + l + "k : " + k + "count : " + count);
-                    } else {
-                        document.querySelector(".stone"+l+k).style.backgroundColor = "white";
-                        console.log("l : " + l + "k : " + k + "count : " + count);
-                    }
-                count++
-                k++;
-                l++;
+                    e.target.style.backgroundColor = "black";
+                    e.target.innerHTML = count+1;
+                    // e.target.style.textAlign = center;
+                    e.target.style.color = "white";
+                    console.log("ID값", e.target.id);
+                    console.log("CLASS값", e.target.class);
+                } else {
+                    e.target.style.backgroundColor = "white";
+                    e.target.style.borderColor = "black";
+                    e.target.innerHTML = count+1;
+                    e.target.style.color = "black";   
+                    console.log("ID값", e.target.id);
+                    console.log("CLASS값", e.target.class);
+                }
+            
+                count++;
+                }
             });
-            
-
-        function mouseDown() {
-            for(let count = 0; count < 20; count++) {
-                let l = 0;
-                let k = 0;
-                console.log(document.querySelector(".stone"+l+k));
-
-                l += 1;
-                k += 1;
-            }
-            
-        };
     </script>
 </body>
 </html>
