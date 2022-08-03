@@ -57,22 +57,24 @@
                         <td class="tdText2" id="rightTop3">흑돌 : 0개</td>
                     </tr>
                     <tr>
-                        <td class="tdText2" id="rightTop4"></td>
+                        <td class="tdText2" id="rightTop4">백돌소요시간</td>
                     </tr>
                     <tr>
-                        <td class="tdText2" id="rightTop5"></td>
+                        <td class="tdText2" id="rightTop5">흑돌소요시간</td>
                     </tr>
                     <tr>
                         <td rowspan="3" class="tdText">다<br>음</td>
-                        <td class="tdText2" id="rightBottom1"></td>
+                        <td class="tdText2" id="rightBottom1">순서</td>
                     </tr>
                     <tr>
-                        <td class="tdText2" id="rightBottom2"></td>
+                        <td class="tdText2" id="rightBottom2">이번경과시간</td>
                     </tr>
                     <tr>
-                        <td class="tdText2" id="rightBottom3"></td>
+                        <td class="tdText2" id="rightBottom3">남은시간</td>
                     </tr>
                 </table>
+                <button id="btn">시작</button>
+                <button id="btn2">종료</button>
             </div>
         </div>
     </div>
@@ -84,7 +86,7 @@
         let sittedStone = 0;
         let whBk = "순서";
         let rudch = 0;
-        let skach = 0;
+        let skach = 10;
         let whrudch = 0;
         let bkrudch = 0;
         
@@ -159,8 +161,6 @@
             if(e.target.id=="Table2") {
                 console.log("실패");
             } else {
-                
-
                 if(count%2==0) {
                     e.target.style.backgroundColor = "black";
                     e.target.innerHTML = count+1;
@@ -168,33 +168,92 @@
                     
                     blackStone.push(e.target.innerHTML);
                     console.log("black list:",blackStone);
+                    tenSecond;
                 } else {
                     e.target.style.backgroundColor = "white";
                     e.target.style.borderColor = "black";
                     e.target.innerHTML = count+1;
                     e.target.style.color = "black";
                     whiteStone.push(e.target.innerHTML);
-
+                    tenSecond;
                     console.log("white list:",whiteStone.length);
                 }
-            
                 count++;
                 let totalStone = blackStone.concat(whiteStone);
 
                 rightTop2.innerHTML = "백돌 : " + whiteStone.length + "개";
                 rightTop3.innerHTML = "흑돌 : " + blackStone.length + "개";
                 rightTop1.innerHTML = "놓여진 돌의 개수 : " + totalStone.length + "개";
-                }
-            });
+            }
+        });
             // console.log("조건문 밖 list:",whiteStone);
 
             
             
-            rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
-            rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
-            rightBottom1.innerHTML = "순서 : " + whBk
-            rightBottom2.innerHTML = "이번경과시간 : " + rudch + "초";
-            rightBottom3.innerHTML = "남은시간 : " + skach + "초";
+        rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
+        rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
+        rightBottom1.innerHTML = "순서 : " + whBk
+        rightBottom2.innerHTML = "이번경과시간 : " + rudch + "초";
+        rightBottom3.innerHTML = "남은시간 : " + skach + "초";
+
+            // let sittedStone = 0;
+            // let whBk = "순서";
+            // let rudch = 0;
+            // let skach = 0;
+            // let whrudch = 0;
+            // let bkrudch = 0;
+
+        let handleId = 0;
+        let playTime = 0;
+        let lastTime = 10;
+            // let tenSecond = setInterval(function(){
+            //     let pastTime = document.querySelector("#rightBottom2");
+            //     pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
+            //     document.querySelector("#rightBottom3").textContent = "남은시간 : " + lastTime-- + "초";
+            //     if(playTime > 10) {
+            //         clearInterval(tenSecond);
+            //         playTime = 0;
+            //         pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
+            //         document.querySelector("#rightBottom3").textContent = "남은시간 : " + 10 + "초";
+            //     };
+            //     // playTime = 0;
+            // }, 1000);
+
+        function ttenSecond(){
+            let pastTime = document.querySelector("#rightBottom2");
+            pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
+            document.querySelector("#rightBottom3").textContent = "남은시간 : " + lastTime-- + "초";
+            console.log("시간 소요 : ", playTime);
+            if(playTime > 10) {
+                console.log("playTime : ", playTime);
+                // playTime = 0;
+                pastTime.textContent = "이번경과시간 : " + 0 + "초";
+                document.querySelector("#rightBottom3").textContent = "남은시간 : " + 10 + "초";
+                console.log("hand : ", handleId);
+                if(handleId == 1) {
+                    clearInterval(ttenSecond);
+                }
+            };
+            
+        };
+
+        btn.onclick=function(){
+            if(handleId == 0) {
+                handleId = setInterval(ttenSecond, 1000);
+                clearInterval(ttenSecond);
+                // if(playTime > 10) {
+                //     clearInterval(ttenSecond);
+                //     playTime = 0;
+                //     pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
+                //     document.querySelector("#rightBottom3").textContent = "남은시간 : " + 10 + "초";
+                // };
+            };
+        }
+
+        btn2.onclick = function(){
+            clearInterval(handleId);
+            handleId = 0;
+        }
     </script>
 </body>
 </html>
