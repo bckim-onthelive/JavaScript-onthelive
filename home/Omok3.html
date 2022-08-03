@@ -104,10 +104,9 @@
         
 
         let count = 1;
-        let user_clicked = false;
-        let user_time = true;
         
         let a = undefined;
+        let getPlayTime = 0;
         
         
 
@@ -176,28 +175,6 @@
                 Table2.appendChild(TR);
             }
         }
-        
-        function userTimer() {
-            let a = setInterval(function() {
-                let pastTime = document.querySelector("#rightBottom2");
-                pastTime.textContent = "이번경과시간 : " + playTime + "초";
-                document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
-                user_clicked = true;
-
-                if (playTime < 10) {
-                    playTime = playTime + 1;
-                    if (user_clicked == false) {
-                        clearInterval(a);
-                        playTime = 1;
-                        clearDashBoard();
-                    }
-                } else {
-                    clearInterval(a);
-                    playTime = 1;
-                    clearDashBoard();
-                }
-            }, 1000);
-        }
 
         function clearDashBoard() {
             let pastTime = document.querySelector("#rightBottom2");
@@ -205,16 +182,31 @@
             document.querySelector("#rightBottom3").textContent = "남은시간 : " + 10 + "초";
         }
 
+        function setUserPlayTime(playTime) {
+            getPlayTime = playTime;
+        }
+
+        function getUserPlayTime() {
+            return getPlayTime;
+        }
+        
         Table2.addEventListener("click", function(e) {
             let playTime = 1;
         
             const click = e.target;
 
             if (click.id != "Table2") {
-            
-            
                 // 이번 경과시간, 남은 시간    
                 if (a) {
+                    if (count % 2 != 0) {
+                        // console.log("흑돌", getUserPlayTime());
+                        bkrudch += getUserPlayTime();
+                        console.log("흑돌", bkrudch);
+                    } else {
+                        // console.log("백돌", getUserPlayTime());
+                        whrudch += getUserPlayTime();
+                        console.log("백돌", whrudch);
+                    }
                     clearInterval(a);
                     playTime = 1;
                     clearDashBoard();
@@ -223,7 +215,7 @@
                     let pastTime = document.querySelector("#rightBottom2");
                     pastTime.textContent = "이번경과시간 : " + playTime + "초";
                     document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
-                    user_clicked = true;
+                    setUserPlayTime(playTime);
                     playTime = playTime + 1;
                     
                     if (playTime > 10) {
