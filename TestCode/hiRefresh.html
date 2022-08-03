@@ -1,0 +1,46 @@
+<!-- classList 클래스 추가하고 색상바꾸기 -->
+<!-- toggle -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle, ClassList</title>
+    <style>
+        .change {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" style="border: 2px solid black; height: 300px;">
+        <div id="d" style="border: 2px solid red; display: inline-block; width: 100px; height: 100px;"></div>
+    </div>
+    
+    <script>
+        // function text(){
+        //     document.getElementById('div').innerText += "안녕!";
+        // };
+
+        // let interval = setInterval(text, 500);
+
+        // let toggle = true;
+
+        // box.onclick = function(e){
+        //     if(toggle) {
+        //         clearInterval(interval);
+        //         toggle = false;
+        //     } else {
+        //         interval = setInterval(text, 500);
+        //         toggle = true;
+        //     }
+        // }
+        // let Box = document.querySelector("#box");
+        d.addEventListener('click', function(){
+            d.classList.toggle('change');
+        });
+        
+    </script>
+</body>
+</html>
