@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMOK4-reCopy</title>
+    <style>
+        td {
+            border: 2px solid black;
+            width: 50px;
+            height: 50px;
+        }
+        sup {
+            font-size: 15px;
+        }
+        .tdText, .tdText2 {
+            color: white;
+            font-size: 20px;
+            border: black;
+        }
+        .tdText {
+            color: orange;
+            vertical-align: middle;
+            width: 5px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick = "makeTable()">오목판 만들기</button>
+    <br><br>
+    <div style="position: relative;">
+        <div id = "Main" style = "position: relative; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
+            <table id = "Table" style = "border-collapse: collapse;"></table>
+            <table id = "Table2" style = "position: absolute; top: 18px; left: 19px; border-spacing: 26px 23px;"></table>
+        </div>
+        <div style="width: 2000px; height: 1700px; background-color: blue; position: absolute; top: -10px; z-index: -1;">
+            <div style="margin-left: 1200px; color: white;">
+                <h1>텐초목</h1>
+                <span>10초안에 두지 않으면 기회는 상대편에게 ~</span>
+                <br><br>
+                <table style="border-collapse: collapse; width: 300px; height: 300px;">
+                    <tr>
+                        <td rowspan="5" class="tdText">현<br>황</td>
+                        <td class="tdText2" id="rightTop1">놓여진 돌의 개수 : 0개</td>
+                    </tr>
+                    <tr>
+                        <td class="tdText2" id="rightTop2">백돌 : 0개</td>
+                    </tr>
+                    <tr>
+                        <td class="tdText2" id="rightTop3">흑돌 : 0개</td>
+                    </tr>
+                    <tr>
+                        <td class="tdText2" id="rightTop4">백돌소요시간</td>
+                    </tr>
+                    <tr>
+                        <td class="tdText2" id="rightTop5">흑돌소요시간</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" class="tdText">다<br>음</td>
+                        <td class="tdText2" id="rightBottom1">순서</td>
+                    </tr>
+                    <tr>
+                        <td class="tdText2" id="rightBottom2">이번경과시간</td>
+                    </tr>
+                    <tr>
+                        <td class="tdText2" id="rightBottom3">남은시간</td>
+                    </tr>
+                </table>
+                <button id="btn">시작</button>
+                <button id="btn2">종료</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let blackStone = new Array();
+        let whiteStone = new Array();
+
+        let sittedStone = 0;
+        let rudch = 0;
+        let skach = 10;
+        let whrudch = 0;
+        let bkrudch = 0;
+
+        let Checker = document.querySelector(".checker");
+        console.log("Checker는",Checker);
+        
+
+        function makeTable() {
+            let row = prompt("몇 행을 원하는 가");
+            let col = prompt("몇 열을 원하는 가");
+            Main.style.backgroundColor = "#d37313";
+            
+            for(let j = 0; j < Number(row) + 1; j++) {
+                let TR = document.createElement('tr');
+
+                for(let i = 0; i < Number(col) + 1; i++) {
+                    let TD = document.createElement('td');
+                    
+                    if(j == 0 || i == 0) {
+                        TD.style.border = "transparent";
+                        
+                        TD.style.paddingRight = "5px";
+                        
+                        if(j == 0) {
+                            TD.innerHTML = String.fromCharCode(65+Number(i));
+                            if(TD.innerHTML > "H") {
+                                TD.innerHTML = String.fromCharCode(66+Number(i));
+                            }
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "middle";
+                        }
+                        if(i == 0) {
+                            TD.innerHTML = Number(row)-j+1;
+                            TD.style.textAlign = "center";
+                            TD.style.verticalAlign = "bottom";
+                        }
+                        if(j == 0 && i == 0) {
+                            TD.innerHTML = (Number(row)+1)+"<sup>"+"A";
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "bottom";
+                        }
+                    }
+                    TR.appendChild(TD);
+                }
+                Table.appendChild(TR);
+            }
+            makeCloneTable(row, col);
+        }
+
+        function makeCloneTable(row, col) {
+            for(let k = 0; k < Number(row)+1; k++) {
+                let TR = document.createElement('tr');
+                
+                for(let l = 0; l < Number(col)+1; l++) {
+                    let TD = document.createElement('td');
+                    let Attr = document.createAttribute("class");
+                    let ATTR = document.createAttribute("class");
+                    Attr.value = "stone"+l+k;
+                    ATTR.value = "checker"
+                    TD.setAttributeNode(Attr);
+                    TR.appendChild(TD);
+                    TD.style.border = "2px solid transparent";
+                    TD.style.backgroundColor = "transparent";
+                    TD.style.borderRadius = "50px";
+                    TD.style.width = "25px";
+                    TD.style.height = "25px";
+                }
+                Table2.appendChild(TR);
+            }
+        }
+        let count = 0
+        Table2.addEventListener("click", function(e) {
+            let clickStone = e.target;
+            if(clickStone.id=="Table2") {
+                console.log("실패");
+            } else if (clickStone.class=="checked") {
+                console.log("중복");
+            } else {
+                // let makeAttr = document.createAttribute("class");
+                // makeAttr.value = "checked";
+                // document.querySelector("td").setAttributeNode(makeAttr);
+                if(count%2==0) {
+                    clickStone.style.backgroundColor = "black";
+                    clickStone.innerHTML = count+1;
+                    clickStone.style.color = "white";
+                    
+                    blackStone.push(clickStone.innerHTML);
+                    console.log("black list:",blackStone);
+                } else {
+                    clickStone.style.backgroundColor = "white";
+                    clickStone.style.borderColor = "black";
+                    clickStone.innerHTML = count+1;
+                    clickStone.style.color = "black";
+                    whiteStone.push(clickStone.innerHTML);
+                    console.log("white list:",whiteStone.length);
+                }
+                count++;
+                let totalStone = blackStone.concat(whiteStone);
+
+                rightTop2.innerHTML = "백돌 : " + whiteStone.length + "개";
+                rightTop3.innerHTML = "흑돌 : " + blackStone.length + "개";
+                rightTop1.innerHTML = "놓여진 돌의 개수 : " + totalStone.length + "개";
+                
+                if (totalStone.length%2==0) {
+                    rightBottom1.innerHTML = "순서 : 흑돌";            
+                } else {
+                    rightBottom1.innerHTML = "순서 : 백돌";
+                }
+            }
+        });            
+            
+        rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
+        rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
+        rightBottom1.innerHTML = "순서 : 흑돌";
+        rightBottom2.innerHTML = "이번경과시간 : 0초";
+        rightBottom3.innerHTML = "남은시간 : 10초";
+        let handleId = 0;
+        let playTime = 1;
+
+        console.log("후반 Checker는",Checker);
+        Table2.onclick = function(e){
+            if(e.target.id=="Table2") {
+                console.log("실패");
+            } else {
+                let a = setInterval(function(){
+                    let pastTime = document.querySelector("#rightBottom2");
+                    pastTime.textContent = "이번경과시간 : " + playTime + "초";
+                    document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10-playTime) + "초";
+                    playTime++;
+                    if (playTime >10) {
+                        clearInterval(a);
+                        playTime = 1;
+                    }
+                }, 1000);
+            };
+        };
+        //바둑돌을 눌렀을 때 10초 운용. 멈춘다. 자동으로 반복시키려면?
+        //td가 중복해서 눌림. - 선택이 안되도록 변경.
+        //속도가 중복해서 빨라짐. - 숫자와 텀을 초기화해야함.
+        //흑백돌 소요시간은 경과시간을 배열화 해서 더해야 한다?
+    </script>
+</body>
+</html>
