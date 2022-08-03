@@ -211,6 +211,22 @@
             const click = e.target;
 
             if (click.id != "Table2") {
+            
+            
+                // 이번 경과시간, 남은 시간    
+                if (a) {
+                    clearInterval(a);
+                    playTime = 1;
+                    clearDashBoard();
+                } 
+                a = setInterval(function() {
+                    let pastTime = document.querySelector("#rightBottom2");
+                    pastTime.textContent = "이번경과시간 : " + playTime + "초";
+                    document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
+                    user_clicked = true;
+                    playTime = playTime + 1;
+                }, 1000);
+            
                 if (count % 2 != 0) {
                     click.style.backgroundColor = "black";
                     click.style.color = "white";
@@ -223,6 +239,7 @@
                     whiteStone.push(click.className);
                     console.log("white list:", whiteStone);
                 }
+                /// setInterval , clearInterval
                 
                 click.innerHTML = count;
                 
@@ -248,23 +265,9 @@
             }
             ///////// 여기 까지 옵니다 /////
             
-            
+        });
             /// 분기점 ///
-            if (a) {
-                clearInterval(a);
-                playTime = 1;
-                clearDashBoard();
-            } 
-            a = setInterval(function() {
-                let pastTime = document.querySelector("#rightBottom2");
-                pastTime.textContent = "이번경과시간 : " + playTime + "초";
-                document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
-                user_clicked = true;
-                playTime = playTime + 1;
-            }, 1000);
             
-            console.log("a:",a);
-        })
         console.log("후반 Checker는", Checker);
         
         //td가 중복해서 눌림. - 선택이 안되도록 변경.
