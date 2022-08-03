@@ -1,0 +1,56 @@
+<!-- 위치 변경 실험 -->
+<!-- 상위 요소 relative / 하위 요소 absolute -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #first {
+            position: absolute;
+            width: 100px; height: 100px;
+            background-color: red;
+            top: 100px; left: 100px;
+        }
+        #second {
+            position: absolute;
+            width: 100px; height: 100px;
+            background-color: green;
+            
+        }
+    </style>
+</head>
+<body>
+    <div style="position: relative; background-color: blue; width: 200px; height: 200px;">
+        <table id="first">
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+        </table>
+        <table id="second"></table>
+    </div>
+</body>
+</html>
