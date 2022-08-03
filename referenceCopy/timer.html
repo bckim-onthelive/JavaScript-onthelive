@@ -24,7 +24,7 @@
         <div class="clock">
             <h1 id="time"></h1>
         </div>
-        <button id="stop">STOP</button>
+        <!-- <button id="stop">STOP</button> -->
         <button id="go">GO</button>
     </div>
 
@@ -46,15 +46,26 @@
         // getTime();
 
         go.onclick = function(){
-            if(handleId == 0) {
-                handleId = setInterval(getTime, 1000)
-            };
+                var restart = setInterval(function(){
+                    const date = new Date();
+                    const hour = date.getHours();
+                    const minutes = date.getMinutes();
+                    const seconds = date.getSeconds();
+                    const time = `${hour}:${minutes}:${seconds}`
+                    h1.textContent = time;
+                    console.log(handleId);
+                    handleId++
+                    if(handleId > 10){
+                       clearInterval(restart);
+                       handleId = 0;        
+                    }
+                }, 1000);
         };
 
-        stop.onclick=function(){
-            clearInterval(handleId);
-            handleId = 0;
-        };
+        // stop.onclick=function(){
+        //     clearInterval(handleId);
+        //     handleId = 0;
+        // };
     </script>
 </body>
 </html>
