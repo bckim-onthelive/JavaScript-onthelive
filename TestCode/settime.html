@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button onclick="blackTime()">blackTime</button>
+    <button onclick="whiteTime()">whiteTime</button> -->
+    <h1>0</h1>
+    <script>
+        // let n = 0;
+        // function blackTime() {
+        //     console.log(n++);
+        //     if(n > 10) {
+        //         clearInterval(tId);
+        //         console.log("종료되었습니다.")
+        //     };
+        // };
+        // const tId = setInterval(blackTime, 1000);
+        
+        // function whiteTime() {
+        //     console.log(n++);
+        //     if(n > 10) {
+        //         clearInterval(tJd);
+        //         console.log("종료되었습니다.")
+        //     }
+        // }
+        // const tJd = setInterval(whiteTime, 1000);
+
+        let seconds = 1;
+        let timerId;
+        timerId = setInterval(function(){
+            document.querySelector("h1").textContent = seconds++;
+            if(seconds > 5) {
+                clearInterval(timerId)
+            }
+        }, 1000);
+
+        // function show(name) {
+        //     console.log(name);
+        // }
+        // const tId = setInterval(show, 1000, "Mike");
+        // clearInterval(tId);
+
+        // let num = 0;
+        // function showTime() {
+        //     console.log(`안녕하세요, 접속하신지 ${num++}초가 지났습니다.`)
+        // }
+
+        // setInerval(showTime, 1000);
+    </script>
+</body>
+</html>
