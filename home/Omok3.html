@@ -225,6 +225,12 @@
                     document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
                     user_clicked = true;
                     playTime = playTime + 1;
+                    
+                    if (playTime > 10) {
+                        clearInterval(a);
+                        playTime = 1;
+                        clearDashBoard();
+                    }
                 }, 1000);
             
                 if (count % 2 != 0) {
