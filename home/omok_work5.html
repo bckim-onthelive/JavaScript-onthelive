@@ -105,6 +105,7 @@
     let playTime = 0
 
     function replay() {
+        // 여기 왜 테이블을 만드는건지 노이해
         makeCloneTable();
         console.log("됐냐");
     }
@@ -114,34 +115,34 @@
         let col = prompt("몇 열을 원하는 가");
         Main.style.backgroundColor = "#d37313";
 
-        for (let j = 0; j < Number(row); j++) {
+        for (let i = 0; i < Number(row); i++) {
             let TR = document.createElement('tr');
             
-            for (let i = 0; i < Number(col); i++) {
+            for (let j = 0; j < Number(col); j++) {
                 let TD = document.createElement('td');
                 
-                if (i == 0) {
-                    // i == 0, j = 0 ~ 100
-                    // TD.innerHTML = Number(row) - j + 1;
+                if (j == 0) {
+                    // i = 0 ~ 100, j == 0
+                    // TD.innerHTML = Number(row) - i + 1;
                     TD.style.border = "transparent";
                     TD.style.paddingRight = "5px";
                     TD.style.textAlign = "center";
                     TD.style.verticalAlign = "bottom";
 
-                    if (j == 0) {
+                    if (i == 0) {
                         // i == 0, j == 0
                         // TD.innerHTML = (Number(row) + 1) + "<sup>" + "A";
                         TD.style.textAlign = "right";
                         TD.style.verticalAlign = "bottom";
                     }
                 } else {
-                    if (j == 0) {
-                        // i = 0 ~ 100, j = 0
+                    if (i == 0) {
+                        // i = 0, j = 0 ~ 100
                         TD.style.border = "transparent";
                         TD.style.paddingRight = "5px";
-                        // TD.innerHTML = String.fromCharCode(65 + Number(i));
+                        // TD.innerHTML = String.fromCharCode(65 + Number(j));
                         // if (TD.innerHTML > "H") {
-                            // TD.innerHTML = String.fromCharCode(66 + Number(i));
+                            // TD.innerHTML = String.fromCharCode(66 + Number(j));
                         // }
                         TD.style.textAlign = "right";
                         TD.style.verticalAlign = "middle";
@@ -155,14 +156,14 @@
     }
 
     function makeCloneTable(row, col) {
-        for (let k = 0; k < Number(row) + 1; k++) {
+        for (let i = 0; i < Number(row) + 1; i++) {
             let TR = document.createElement('tr');
 
-            for (let l = 0; l < Number(col) + 1; l++) {
+            for (let j = 0; j < Number(col) + 1; l++) {
                 let TD = document.createElement('td');
                 let Attr = document.createAttribute("class");
                 
-                Attr.value = "stone" + l + k;
+                Attr.value = "stone" + j + i;
                 TD.setAttributeNode(Attr);                    // class 부여 
                 TD.style.border = "2px solid transparent";
                 // TD.style.backgroundColor = "yellow";
@@ -170,20 +171,20 @@
                 TD.style.width = "25px";
                 TD.style.height = "25px";
                 
-                if (l == 0) {
-                    // k == 0, l = 0 ~ 100
-                    TD.innerHTML = Number(row) - k + 1;
+                if (j == 0) {
+                    // i == 0, j = 0 ~ 100
+                    TD.innerHTML = Number(row) - i + 1;
                     TD.style.border = "transparent";
                     TD.style.textAlign = "center";
                     TD.style.verticalAlign = "bottom";
                     TD.style.backgroundColor = "transparent";
                     TD.style.borderRadius = "0px";
 
-                    if (k == 0) {  TD.innerHTML = "";  }
+                    if (i == 0) {  TD.innerHTML = "";  }
                     
                 } else {
-                    if (k == 0) {
-                        // k = 0 ~ 100, l = 0
+                    if (i == 0) {
+                        // i = 0 ~ 100, j = 0
                         TD.style.border = "transparent";
                         TD.innerHTML = String.fromCharCode(64 + Number(l));
                         
