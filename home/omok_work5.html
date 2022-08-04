@@ -81,209 +81,214 @@
         </div>
     </div>
 
-    <script>
-        let blackStone = new Array();
-        let whiteStone = new Array();
+<script>
+    let blackStone = new Array();
+    let whiteStone = new Array();
 
-        let sittedStone = 0;
-        let rudch = 0;
-        let skach = 10;
-        let whrudch = 0;
-        let bkrudch = 0;
+    let sittedStone = 0;
+    let rudch = 0;
+    let skach = 10;
+    let whrudch = 0;
+    let bkrudch = 0;
 
-        rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
-        rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
-        rightBottom1.innerHTML = "순서 : 흑돌";
-        rightBottom2.innerHTML = "이번경과시간 : 0초";
-        rightBottom3.innerHTML = "남은시간 : 10초";
+    rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
+    rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
+    rightBottom1.innerHTML = "순서 : 흑돌";
+    rightBottom2.innerHTML = "이번경과시간 : 0초";
+    rightBottom3.innerHTML = "남은시간 : 10초";
 
-        let count = 1;
-        let a = undefined;
+    let count = 1;
+    let a = undefined;
 
-        let handleId = 0;
-        let getPlayTime = 0;
-        let playTime = 0
+    let handleId = 0;
+    let getPlayTime = 0;
+    let playTime = 0
 
-        function replay() {
-            makeCloneTable();
-            console.log("됐냐");
-        }
+    function replay() {
+        makeCloneTable();
+        console.log("됐냐");
+    }
 
-        function makeTable() {
-            let row = prompt("몇 행을 원하는 가");
-            let col = prompt("몇 열을 원하는 가");
-            Main.style.backgroundColor = "#d37313";
+    function makeTable() {
+        let row = prompt("몇 행을 원하는 가");
+        let col = prompt("몇 열을 원하는 가");
+        Main.style.backgroundColor = "#d37313";
 
-            for (let j = 0; j < Number(row); j++) {
-                let TR = document.createElement('tr');
-                for (let i = 0; i < Number(col); i++) {
-                    let TD = document.createElement('td');
-                    if (i == 0) {
-                        // i == 0, j = 0 ~ 100
-                        // TD.innerHTML = Number(row) - j + 1;
+        for (let j = 0; j < Number(row); j++) {
+            let TR = document.createElement('tr');
+            
+            for (let i = 0; i < Number(col); i++) {
+                let TD = document.createElement('td');
+                
+                if (i == 0) {
+                    // i == 0, j = 0 ~ 100
+                    // TD.innerHTML = Number(row) - j + 1;
+                    TD.style.border = "transparent";
+                    TD.style.paddingRight = "5px";
+                    TD.style.textAlign = "center";
+                    TD.style.verticalAlign = "bottom";
+
+                    if (j == 0) {
+                        // i == 0, j == 0
+                        // TD.innerHTML = (Number(row) + 1) + "<sup>" + "A";
+                        TD.style.textAlign = "right";
+                        TD.style.verticalAlign = "bottom";
+                    }
+                } else {
+                    if (j == 0) {
+                        // i = 0 ~ 100, j = 0
                         TD.style.border = "transparent";
                         TD.style.paddingRight = "5px";
-                        TD.style.textAlign = "center";
-                        TD.style.verticalAlign = "bottom";
-
-                        if (j == 0) {
-                            // i == 0, j == 0
-                            // TD.innerHTML = (Number(row) + 1) + "<sup>" + "A";
-                            TD.style.textAlign = "right";
-                            TD.style.verticalAlign = "bottom";
-                        }
-                    } else {
-                        if (j == 0) {
-                            // i = 0 ~ 100, j = 0
-                            TD.style.border = "transparent";
-                            TD.style.paddingRight = "5px";
-                            // TD.innerHTML = String.fromCharCode(65 + Number(i));
-                            // if (TD.innerHTML > "H") {
-                                // TD.innerHTML = String.fromCharCode(66 + Number(i));
-                            // }
-                            TD.style.textAlign = "right";
-                            TD.style.verticalAlign = "middle";
-                        }
+                        // TD.innerHTML = String.fromCharCode(65 + Number(i));
+                        // if (TD.innerHTML > "H") {
+                            // TD.innerHTML = String.fromCharCode(66 + Number(i));
+                        // }
+                        TD.style.textAlign = "right";
+                        TD.style.verticalAlign = "middle";
                     }
-                    TR.appendChild(TD);
                 }
-                Table.appendChild(TR);
+                TR.appendChild(TD);
             }
-            makeCloneTable(row, col);
+            Table.appendChild(TR);
         }
+        makeCloneTable(row, col);
+    }
 
-        function makeCloneTable(row, col) {
-            for (let k = 0; k < Number(row) + 1; k++) {
-                let TR = document.createElement('tr');
+    function makeCloneTable(row, col) {
+        for (let k = 0; k < Number(row) + 1; k++) {
+            let TR = document.createElement('tr');
 
-                for (let l = 0; l < Number(col) + 1; l++) {
-                    let TD = document.createElement('td');
-                    let Attr = document.createAttribute("class");
-                    Attr.value = "stone" + l + k;
-                    TD.setAttributeNode(Attr);                    // class 부여 
-                    TD.style.border = "2px solid transparent";
-                    // TD.style.backgroundColor = "yellow";
-                    TD.style.borderRadius = "50px";
-                    TD.style.width = "25px";
-                    TD.style.height = "25px";
-                    if (l == 0) {
-                        // k == 0, l = 0 ~ 100
-                        TD.innerHTML = Number(row) - k + 1;
+            for (let l = 0; l < Number(col) + 1; l++) {
+                let TD = document.createElement('td');
+                let Attr = document.createAttribute("class");
+                
+                Attr.value = "stone" + l + k;
+                TD.setAttributeNode(Attr);                    // class 부여 
+                TD.style.border = "2px solid transparent";
+                // TD.style.backgroundColor = "yellow";
+                TD.style.borderRadius = "50px";
+                TD.style.width = "25px";
+                TD.style.height = "25px";
+                
+                if (l == 0) {
+                    // k == 0, l = 0 ~ 100
+                    TD.innerHTML = Number(row) - k + 1;
+                    TD.style.border = "transparent";
+                    TD.style.textAlign = "center";
+                    TD.style.verticalAlign = "bottom";
+                    TD.style.backgroundColor = "transparent";
+                    TD.style.borderRadius = "0px";
+
+                    if (k == 0) {  TD.innerHTML = "";  }
+                    
+                } else {
+                    if (k == 0) {
+                        // k = 0 ~ 100, l = 0
                         TD.style.border = "transparent";
-                        TD.style.textAlign = "center";
-                        TD.style.verticalAlign = "bottom";
+                        TD.innerHTML = String.fromCharCode(64 + Number(l));
+                        
+                        if (TD.innerHTML > "H") {
+                            TD.innerHTML = String.fromCharCode(65 + Number(l));
+                        }
+                        
+                        TD.style.textAlign = "right";
+                        TD.style.verticalAlign = "middle";
                         TD.style.backgroundColor = "transparent";
                         TD.style.borderRadius = "0px";
-
-                        if (k == 0) {
-                            // k == 0, l == 0
-                            TD.innerHTML = "";
-                        //     TD.style.textAlign = "right";
-                        //     TD.style.verticalAlign = "bottom";
-                        //     TD.style.backgroundColor = "transparent";
-                        //     TD.style.borderRadius = "0px";
-
-                        }
-                    } else {
-                        if (k == 0) {
-                            // k = 0 ~ 100, l = 0
-                            TD.style.border = "transparent";
-                            TD.innerHTML = String.fromCharCode(64 + Number(l));
-                            if (TD.innerHTML > "H") {
-                                TD.innerHTML = String.fromCharCode(65 + Number(l));
-                            }
-                            TD.style.textAlign = "right";
-                            TD.style.verticalAlign = "middle";
-                            TD.style.backgroundColor = "transparent";
-                            TD.style.borderRadius = "0px";
-                        }
                     }
-                    TR.appendChild(TD);
                 }
-                Table2.appendChild(TR);
+                TR.appendChild(TD);
             }
-        };
-
-        function setUserPlayTime(playTime) {
-            getPlayTime = playTime;
-            console.log("set함수",getPlayTime); //2
+            Table2.appendChild(TR);
         }
+    };
 
-        function getUserPlayTime() {
-            return getPlayTime;
-        }
 
-        Table2.addEventListener("click", function(e) {
-            let clickStone = e.target;
-            let playTime = 0;
+    function setUserPlayTime(playTime) {
+        getPlayTime = playTime;
+    }
+
+    function getUserPlayTime() {
+        return getPlayTime;
+    }
+
+    Table2.addEventListener("click", function(e) {
+        let clickStone = e.target;
+        let playTime = 0;
+        
+        if (clickStone.id != "Table2") {
+            // 1번째 실행시 if(a) 문을 거치지 않음
+            // 백돌인 경우만 if(a) 문을 거쳐서 실행됨
+            if (a) {
+                clearInterval(a);
+                playTime = 0;
+            };
             
-            if (clickStone.id != "Table2") {
-                if (count % 2 != 0) {
-                    clickStone.style.backgroundColor = "black";
-                    clickStone.style.color = "white";
-                    blackStone.push(clickStone.className);
-                    console.log("black list:", blackStone);
-                    bkrudch += getUserPlayTime();
-                    console.log("흑돌누적시간",bkrudch);
-                    rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
-                    // return bkrudch;
-                } else {
-                    clickStone.style.backgroundColor = "white";
-                    clickStone.style.borderColor = "black";
-                    clickStone.style.color = "black";
-                    whiteStone.push(clickStone.className);
-                    console.log("white list:", whiteStone);
-                    whrudch += getUserPlayTime();
-                    rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
-                    // return whrudch;
-                }
+            // 각 순서에 따라 각각의 새로운 경과시간을 부여함
+            a = setInterval(function() {
+                let pastTime = document.querySelector("#rightBottom2");
+                pastTime.textContent = "이번경과시간 : " + playTime + "초";
+                document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
+                playTime++;
                 
-                clickStone.innerHTML = count;
-
-                if (a) {
+                // 전역변수 getPlayTime 에 값을 저장
+                setUserPlayTime(playTime);
+                
+                // 10초가 넘으면 초기화 시켜야 함.
+                if (playTime > 10) {
                     clearInterval(a);
                     playTime = 0;
-                };
-                
-                a = setInterval(function() {
-                    let pastTime = document.querySelector("#rightBottom2");
-                    pastTime.textContent = "이번경과시간 : " + playTime + "초";
-                    document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
-                    playTime++;
-                    setUserPlayTime(playTime); //  playTime : 지역 변수를 받아 1.2.3.4...
-                    console.log("겟",getUserPlayTime());//3
-                    
-                    if (playTime > 10) {
-                        clearInterval(a);
-                        playTime = 0;
-                        document.querySelector("#rightBottom2").textContent = "이번경과시간 : 0초";
-                        document.querySelector("#rightBottom3").textContent = "남은시간 : 10초";
-                        }
-                    }, 1000);
-                };
-                
-                count++;
-                let totalStone = blackStone.concat(whiteStone);
-
-                rightTop2.innerHTML = "백돌 : " + whiteStone.length + "개";
-                rightTop3.innerHTML = "흑돌 : " + blackStone.length + "개";
-                rightTop1.innerHTML = "놓여진 돌의 개수 : " + totalStone.length + "개";
-
-                if (totalStone.length % 2 == 0) {
-                    rightBottom1.innerHTML = "순서 : 흑돌";
-                } else {
-                    rightBottom1.innerHTML = "순서 : 백돌";
-                }
-            } 
-            else {
-                console.log("실패"); //1
+                    document.querySelector("#rightBottom2").textContent = "이번경과시간 : 0초";
+                    document.querySelector("#rightBottom3").textContent = "남은시간 : 10초";
+                    }
+                }, 1000);
+        
+            // 조건문에 의해서 count가 홀수일때 흑돌, 짝수일때 백돌
+            if (count % 2 != 0) {
+                clickStone.style.backgroundColor = "black";
+                clickStone.style.color = "white";
+                blackStone.push(clickStone.className);
+                console.log("black list:", blackStone);
+                bkrudch += getUserPlayTime();
+                console.log("흑돌누적시간",bkrudch);
+                rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
+                // return bkrudch;
+            } else {
+                clickStone.style.backgroundColor = "white";
+                clickStone.style.borderColor = "black";
+                clickStone.style.color = "black";
+                whiteStone.push(clickStone.className);
+                console.log("white list:", whiteStone);
+                whrudch += getUserPlayTime();
+                rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
+                // return whrudch;
             }
-        );
+            
+            // 클릭한 오목판 위에 돌에 numbering 화 작업
+            clickStone.innerHTML = count;
+            
+        } else {
+            console.log("실패"); //1
+        }
+            
+        count++;
+        let totalStone = blackStone.concat(whiteStone);
 
-        //td가 중복해서 눌림. - 선택이 안되도록 변경.
-        //지표부분이 눌림 - 안눌리게 막아야.
+        rightTop2.innerHTML = "백돌 : " + whiteStone.length + "개";
+        rightTop3.innerHTML = "흑돌 : " + blackStone.length + "개";
+        rightTop1.innerHTML = "놓여진 돌의 개수 : " + totalStone.length + "개";
 
-    </script>
+        if (totalStone.length % 2 == 0) {
+            rightBottom1.innerHTML = "순서 : 흑돌";
+        } else {
+            rightBottom1.innerHTML = "순서 : 백돌";
+        }
+    }); 
+
+    //td가 중복해서 눌림. - 선택이 안되도록 변경.
+    //지표부분이 눌림 - 안눌리게 막아야.
+
+</script>
 </body>
 
 </html>
