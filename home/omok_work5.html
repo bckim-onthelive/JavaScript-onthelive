@@ -213,7 +213,6 @@
         return getPlayTime;
     }
     
-    // 화면 부분 display하는 함수
     function timeDisplay(playTime) {
         let pastTime = document.querySelector("#rightBottom2");
         let leftTime = document.querySelector("#rightBottom3");
@@ -233,23 +232,18 @@
             };
             
             a = setInterval(function() {
-                // 화면 부분 display하는 함수
                 timeDisplay(playTime);
-                // **** 밖에서 playTime 을 가져다 쓸거기때문에 더하기 전에 값을 저장해야됨;
                 setUserPlayTime(playTime);
-                
                 playTime++;
                 
                 
                 if (playTime > 10) {
                     clearInterval(a);
                     playTime = 0;
-                    // 화면 부분 display하는 함수
                     timeDisplay(playTime);
                     }
                 }, 1000);
         
-            // 조건문에 의해서 count가 홀수일때 흑돌, 짝수일때 백돌
             if (count % 2 != 0) {
                 clickStone.style.backgroundColor = "black";
                 clickStone.style.color = "white";
@@ -270,7 +264,6 @@
                 // return whrudch;
             }
             
-            // 클릭한 오목판 위에 돌에 numbering 화 작업
             clickStone.innerHTML = count;
             
         } else {
