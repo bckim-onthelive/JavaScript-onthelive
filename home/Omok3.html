@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMOK4</title>
+    <title>jk OMOK4</title>
     <style>
         td {
             border: 2px solid black;
@@ -90,9 +90,6 @@
         let skach = 10;
         let whrudch = 0;
         let bkrudch = 0;
-
-        let Checker = document.querySelector(".checker");
-        console.log("Checker는", Checker);
         
         rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
         rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
@@ -101,14 +98,10 @@
         rightBottom3.innerHTML = "남은시간 : 10초";
 
         let handleId = 0;
-        
-
         let count = 1;
         
         let a = undefined;
         let getPlayTime = 0;
-        
-        
 
         function makeTable() {
             let row = prompt("몇 행을 원하는 가");
@@ -192,7 +185,6 @@
         
         Table2.addEventListener("click", function(e) {
             let playTime = 1;
-        
             const click = e.target;
 
             if (click.id != "Table2") {
@@ -249,25 +241,22 @@
                 rightTop3.innerHTML = "흑돌 : " + blackStone.length + "개";
                 rightTop1.innerHTML = "놓여진 돌의 개수 : " + totalStone.length + "개";
 
-
                 if (totalStone.length % 2 == 0) {
                     rightBottom1.innerHTML = "순서 : 흑돌";
                 } else {
                     rightBottom1.innerHTML = "순서 : 백돌";
                 }
-                
-            } else if (click.class == "checked") {
-                console.log("중복");
-            } else {
-                console.log("실패");
             }
+            // else if (click.class == "checked") {
+            //     console.log("중복");
+            // } else {
+            //     console.log("실패");
+            // }
             ///////// 여기 까지 옵니다 /////
             
         });
             /// 분기점 ///
-            
-        console.log("후반 Checker는", Checker);
-        
+                    
         //td가 중복해서 눌림. - 선택이 안되도록 변경.
         //흑백돌 소요시간은 경과시간을 배열화 해서 더해야 한다?
     </script>
