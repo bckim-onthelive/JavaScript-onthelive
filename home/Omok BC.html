@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BC - OMOK4</title>
+    <style>
+        td {
+            border: 2px solid black;
+            width: 50px;
+            height: 50px;
+        }
+        /* sup {
+            font-size: 15px;
+        } */
+
+        .tdHeader {
+            color: orange;
+            vertical-align: middle;
+            width: 2px;
+            font-size: 30px;
+            /* border-right: 2px solid black; */
+            border: transparent;
+        }
+        .tdBody {
+            color: white;
+            font-size: 20px;
+            border: black;
+            padding-left: 20px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <button onclick="makeTable()">오목판 만들기</button>
+    <button onclick="replay()">리플레이 확인하기</button>
+    <br><br>
+    <div style="position: relative; margin-top: 15px;">
+        <div style="width: flex; height: 1700px; background-color: blue; position: right; top: -10px; z-index: -1;">
+        <div id="Main" style="position: flex; top:10px; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
+            <table id="Table" style="border-collapse: collapse;"></table>
+            <table id="Table2" style="border-collapse: seperate; position: absolute; top: -35px; left: -35px; border-spacing:25px 23px;"></table>
+        </div>
+            <div style="display:inline; position:absolute; margin-left: 300px; background-color: blue; color: white;">
+                <h1>텐초목</h1>
+                <span>10초안에 두지 않으면 기회는 상대편에게 ~</span>
+                <br><br>
+                <table style="border-collapse: collapse; width: 350px; height: 300px; background-color: blue;">
+                    <tr>
+                        <td rowspan="5" class="tdHeader">현<br>황</td>
+                        <td class="tdBody" id="rightTop1">놓여진 돌의 개수 : 0개</td>
+                    </tr>
+                    <tr>
+                        <td class="tdBody" id="rightTop2">백돌 : 0개</td>
+                    </tr>
+                    <tr>
+                        <td class="tdBody" id="rightTop3">흑돌 : 0개</td>
+                    </tr>
+                    <tr>
+                        <td class="tdBody" id="rightTop4">백돌소요시간</td>
+                    </tr>
+                    <tr">
+                        <td class="tdBody" id="rightTop5">흑돌소요시간</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" class="tdHeader">다<br>음</td>
+                        <td class="tdBody" id="rightBottom1">순서</td>
+                    </tr>
+                    <tr>
+                        <td class="tdBody" id="rightBottom2">이번경과시간</td>
+                    </tr>
+                    <tr>
+                        <td class="tdBody" id="rightBottom3">남은시간</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let blackStone = new Array();
+        let whiteStone = new Array();
+        let totalStone = new Array();
+
+        let sittedStone = 0;
+        let whrudch = 0;
+        let bkrudch = 0;
+
+        rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
+        rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
+        rightBottom1.innerHTML = "순서 : 흑돌";
+        rightBottom2.innerHTML = "이번경과시간 : 0초";
+        rightBottom3.innerHTML = "남은시간 : 10초";
+
+        let count = 1;
+        let a = undefined;
+
+        let handleId = 0;
+        let getPlayTime = 0;
+        let playTime = 0
+
+        let row = 0;
+        let col = 0;
+
+        function replay() {
+            // makeCloneTable(row,col);
+            // console.log(row, col);
+            // TD.style.borderColor = "transparent";
+            // TD.style.backgroundColor = "transparent";
+
+            // for(i = 1; i < row; i++){
+            //     for(j = 1; j < col; j++) {
+            //         let stone = document.querySelector(".stone"+i+j);
+            //         stone.style.backgroundColor = "transparent";
+            //         stone.style.borderColor = "transparent";
+            //         stone.innerHTML="";
+            //     }
+            // }
+
+            //검흰돌 배열 있다는 전제하에
+            // let first = document.querySelector(".(blackStone.shift())");
+            // first.style.backgroundColor = "black";
+            // first.style.border = "black";
+            // first.innerHTML = indexCheck;
+
+            // let second = document.querySelector(".(whiteStone.shift())");
+            // second.style.backgroundColor = "white";
+            // second.style.border = "white";
+            // second.innerHTML = indexCheck;
+
+            console.log("totalStone return:",totalStone);
+            // for(let i = 0; i < totalStone.length; i++) {
+                // for(let j = 0; j < blackStone.length; j++) {
+                for(count = 1; count < totalStone.length; count++){
+                    let i = 0
+                    if(count%2!=0) {
+                        let newBlackStone = document.querySelector(`.${blackStone[i]}`);
+                        newBlackStone.style.backgroundColor = "black";
+                        newBlackStone.style.border = "black";
+                        newBlackStone.innerHTML=count;
+                    } else {
+                        i--;
+                        let newWhiteStone = document.querySelector(`.${whiteStone[i]}`);
+                        newWhiteStone.style.backgroundColor = "white";
+                        newWhiteStone.style.border = "2px solid black";
+                        newWhiteStone.innerHTML=count;
+                    } i++;
+                }
+                // }
+            // }
+            // blackStone[i].style.backgroundColor = "black";
+            // blackStone[i].style.border = "black";
+
+            // let replayOmok = setInterval((함수), 1000);
+            // if()
+            // clearInterval(replayOmok)
+
+            //어떤 함수를 넣어야 하나.
+            //function qq() {
+                //실행문
+            //}
+            // count에 따라 하나씩 증가해서 interval해야 된다.
+        }
+
+        function makeTable() {
+            row = prompt("몇 행을 원하는 가");
+            col = prompt("몇 열을 원하는 가");
+            
+            Main.style.backgroundColor = "#d37313";
+
+            for (let j = 0; j < Number(row); j++) {
+                let TR = document.createElement('tr');
+                for (let i = 0; i < Number(col); i++) {
+                    let TD = document.createElement('td');
+                    if (i == 0) {
+                        // i == 0, j = 0 ~ 100
+                        // TD.innerHTML = Number(row) - j + 1;
+                        TD.style.border = "transparent";
+                        TD.style.paddingRight = "5px";
+                        TD.style.textAlign = "center";
+                        TD.style.verticalAlign = "bottom";
+
+                        if (j == 0) {
+                            // i == 0, j == 0
+                            // TD.innerHTML = (Number(row) + 1) + "<sup>" + "A";
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "bottom";
+                        }
+                    } else {
+                        if (j == 0) {
+                            // i = 0 ~ 100, j = 0
+                            TD.style.border = "transparent";
+                            TD.style.paddingRight = "5px";
+                            // TD.innerHTML = String.fromCharCode(65 + Number(i));
+                            // if (TD.innerHTML > "H") {
+                                // TD.innerHTML = String.fromCharCode(66 + Number(i));
+                            // }
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "middle";
+                        }
+                    }
+                    TR.appendChild(TD);
+                }
+                Table.appendChild(TR);
+            }
+            makeCloneTable(row, col);
+            return row, col;
+        }
+
+        function makeCloneTable(row, col) {
+            for (let k = 0; k < Number(row) + 1; k++) {
+                let TR = document.createElement('tr');
+
+                for (let l = 0; l < Number(col) + 1; l++) {
+                    let TD = document.createElement('td');
+                    let Attr = document.createAttribute("class");
+                    Attr.value = "stone" + l + k;
+                    TD.setAttributeNode(Attr);                    // class 부여 
+                    TD.style.border = "2px solid transparent";
+                    // TD.style.backgroundColor = "yellow";
+                    TD.style.borderRadius = "50px";
+                    TD.style.width = "25px";
+                    TD.style.height = "25px";
+                    if (l == 0) {
+                        // k == 0, l = 0 ~ 100
+                        TD.innerHTML = Number(row) - k + 1;
+                        TD.style.border = "transparent";
+                        TD.style.textAlign = "center";
+                        TD.style.verticalAlign = "bottom";
+                        TD.style.backgroundColor = "transparent";
+                        TD.style.borderRadius = "0px";
+
+                        if (k == 0) {
+                            // k == 0, l == 0
+                            TD.innerHTML = "";
+                        //     TD.style.textAlign = "right";
+                        //     TD.style.verticalAlign = "bottom";
+                        //     TD.style.backgroundColor = "transparent";
+                        //     TD.style.borderRadius = "0px";
+
+                        }
+                    } else {
+                        if (k == 0) {
+                            // k = 0 ~ 100, l = 0
+                            TD.style.border = "transparent";
+                            TD.innerHTML = String.fromCharCode(64 + Number(l));
+                            if (TD.innerHTML > "H") {
+                                TD.innerHTML = String.fromCharCode(65 + Number(l));
+                            }
+                            TD.style.textAlign = "right";
+                            TD.style.verticalAlign = "middle";
+                            TD.style.backgroundColor = "transparent";
+                            TD.style.borderRadius = "0px";
+                        }
+                    }
+                    TR.appendChild(TD);
+                }
+                Table2.appendChild(TR);
+            }
+        };
+
+        function setUserPlayTime(playTime) {
+            getPlayTime = playTime;
+            // console.log("set함수",getPlayTime); //2
+        }
+
+        function getUserPlayTime() {
+            return getPlayTime;
+        }
+
+        Table2.addEventListener("click", function(e) {
+            let clickStone = e.target;
+            let playTime = 0;
+
+            if (clickStone.id != "Table2") {
+                if (count % 2 != 0) {
+                    clickStone.style.backgroundColor = "black";
+                    clickStone.style.color = "white";
+                    blackStone.push(clickStone.className);
+                    totalStone.push(clickStone.className);
+                    console.log("black list:", blackStone);
+                    bkrudch += getUserPlayTime();
+                    console.log("흑돌누적시간",bkrudch);
+                    rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
+                } else {
+                    clickStone.style.backgroundColor = "white";
+                    clickStone.style.borderColor = "black";
+                    clickStone.style.color = "black";
+                    whiteStone.push(clickStone.className);
+                    totalStone.push(clickStone.className);
+                    console.log("white list:", whiteStone);
+                    whrudch += getUserPlayTime();
+                    rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
+                }
+
+                clickStone.innerHTML = count;
+
+                if (clickStone.id != "Table2") {
+                    if (a) {
+                        clearInterval(a);
+                        playTime = 0;
+                    };
+                }
+                a = setInterval(function() {
+                    let pastTime = document.querySelector("#rightBottom2");
+                    pastTime.textContent = "이번경과시간 : " + playTime + "초";
+                    document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
+                    playTime++;
+                    setUserPlayTime(playTime); //  playTime : 지역 변수를 받아 1.2.3.4...
+                    // console.log("겟",getUserPlayTime());//3
+                    if (playTime > 10) {
+                        clearInterval(a);
+                        playTime = 0;
+                        document.querySelector("#rightBottom2").textContent = "이번경과시간 : 0초";
+                        document.querySelector("#rightBottom3").textContent = "남은시간 : 10초";      
+                    }
+                }, 1000);
+                
+                    
+                count++;
+                // let totalStone = blackStone.concat(whiteStone);
+
+                rightTop2.innerHTML = "백돌 : " + whiteStone.length + "개";
+                rightTop3.innerHTML = "흑돌 : " + blackStone.length + "개";
+                rightTop1.innerHTML = "놓여진 돌의 개수 : " + totalStone.length + "개";
+
+                if (totalStone.length % 2 == 0) {
+                    rightBottom1.innerHTML = "순서 : 흑돌";
+                } else {
+                    rightBottom1.innerHTML = "순서 : 백돌";
+                }
+                // console.log("검돌배열",blackStone);
+                // console.log("흰돌배열",whiteStone);
+                //검흰돌 배열 존재
+            }
+            else {
+                console.log("실패"); //1
+            };  
+            // console.log("검돌배열",blackStone);
+            // console.log("흰돌배열",whiteStone);
+            //검흰돌 배열 존재
+            return blackStone, whiteStone, totalStone;
+        });
+        console.log("검돌배열",blackStone);
+        console.log("흰돌배열",whiteStone);
+        // 안찍힘
+
+        //td가 중복해서 눌림. - 선택이 안되도록 변경.
+        //지표부분이 눌림 - 안눌리게 막아야.
+
+    </script>
+</body>
+
+</html>
