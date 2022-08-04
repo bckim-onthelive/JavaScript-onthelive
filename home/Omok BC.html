@@ -159,17 +159,15 @@
             // }
             // blackStone[i].style.backgroundColor = "black";
             // blackStone[i].style.border = "black";
-
+            let k = 0;
+            let z = 1;
             let replayOmok = setInterval(()=>{
-                let k = 0;
-
-                for(count = 1; count < totalStone.length+1; count++){
-                    if(count%2!=0) {
+                    if(z%2!=0) {
                         console.log(k);
                         let newBlackStone = document.querySelector(`.${blackStone[k]}`);
                         newBlackStone.style.backgroundColor = "black";
                         newBlackStone.style.border = "black";
-                        newBlackStone.innerHTML=count;
+                        newBlackStone.innerHTML=z;
                     } else {
                         k--;
                         console.log(k);
@@ -178,13 +176,12 @@
                         console.log("에러상황",newWhiteStone); // null
                         newWhiteStone.style.backgroundColor = "white";
                         newWhiteStone.style.border = "2px solid black";
-                        newWhiteStone.innerHTML=count;
+                        newWhiteStone.innerHTML=z;
                     } k++;
-                    if(count == totalStone.length){
+                    z++;
+                    if(z >= totalStone.length+1){
                     clearInterval(replayOmok)}
-                }
-                           
-            }, 1000);
+                }, 1000);
 
              
             
