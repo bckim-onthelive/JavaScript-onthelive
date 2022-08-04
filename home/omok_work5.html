@@ -142,7 +142,7 @@
                         TD.style.paddingRight = "5px";
                         // TD.innerHTML = String.fromCharCode(65 + Number(j));
                         // if (TD.innerHTML > "H") {
-                            // TD.innerHTML = String.fromCharCode(66 + Number(j));
+                        //     TD.innerHTML = String.fromCharCode(66 + Number(j));
                         // }
                         TD.style.textAlign = "right";
                         TD.style.verticalAlign = "middle";
@@ -159,11 +159,11 @@
         for (let i = 0; i < Number(row) + 1; i++) {
             let TR = document.createElement('tr');
 
-            for (let j = 0; j < Number(col) + 1; l++) {
+            for (let j = 0; j < Number(col) + 1; j++) {
                 let TD = document.createElement('td');
                 let Attr = document.createAttribute("class");
                 
-                Attr.value = "stone" + j + i;
+                Attr.value = "stone" + i + j;
                 TD.setAttributeNode(Attr); 
                 TD.style.border = "2px solid transparent";
                 // TD.style.backgroundColor = "yellow";
@@ -186,10 +186,10 @@
                     if (i == 0) {
                         // i = 0 ~ 100, j = 0
                         TD.style.border = "transparent";
-                        TD.innerHTML = String.fromCharCode(64 + Number(l));
+                        TD.innerHTML = String.fromCharCode(64 + Number(j));
                         
                         if (TD.innerHTML > "H") {
-                            TD.innerHTML = String.fromCharCode(65 + Number(l));
+                            TD.innerHTML = String.fromCharCode(65 + Number(j));
                         }
                         
                         TD.style.textAlign = "right";
