@@ -112,14 +112,14 @@
             // TD.style.borderColor = "transparent";
             // TD.style.backgroundColor = "transparent";
 
-            // for(i = 1; i < row; i++){
-            //     for(j = 1; j < col; j++) {
-            //         let stone = document.querySelector(".stone"+i+j);
-            //         stone.style.backgroundColor = "transparent";
-            //         stone.style.borderColor = "transparent";
-            //         stone.innerHTML="";
-            //     }
-            // }
+            for(i = 1; i < row; i++){
+                for(j = 1; j < col; j++) {
+                    let stone = document.querySelector(".stone"+i+j);
+                    stone.style.backgroundColor = "transparent";
+                    stone.style.borderColor = "transparent";
+                    stone.innerHTML="";
+                }
+            }
 
             //검흰돌 배열 있다는 전제하에
             // let first = document.querySelector(".(blackStone.shift())");
@@ -131,33 +131,88 @@
             // second.style.backgroundColor = "white";
             // second.style.border = "white";
             // second.innerHTML = indexCheck;
-
+            // makeReplay ();
             console.log("totalStone return:",totalStone);
             // for(let i = 0; i < totalStone.length; i++) {
                 // for(let j = 0; j < blackStone.length; j++) {
-                for(count = 1; count < totalStone.length; count++){
-                    let i = 0
-                    if(count%2!=0) {
-                        let newBlackStone = document.querySelector(`.${blackStone[i]}`);
-                        newBlackStone.style.backgroundColor = "black";
-                        newBlackStone.style.border = "black";
-                        newBlackStone.innerHTML=count;
-                    } else {
-                        i--;
-                        let newWhiteStone = document.querySelector(`.${whiteStone[i]}`);
-                        newWhiteStone.style.backgroundColor = "white";
-                        newWhiteStone.style.border = "2px solid black";
-                        newWhiteStone.innerHTML=count;
-                    } i++;
-                }
+                    // let k = 0
+
+                // for(count = 1; count < totalStone.length+1; count++){
+                //     if(count%2!=0) {
+                //         console.log(k);
+                //         let newBlackStone = document.querySelector(`.${blackStone[k]}`);
+                //         newBlackStone.style.backgroundColor = "black";
+                //         newBlackStone.style.border = "black";
+                //         newBlackStone.innerHTML=count;
+                //     } else {
+                //         k--;
+                //         console.log(k);
+                //         console.log("클래스",whiteStone[k]); // undefined
+                //         let newWhiteStone = document.querySelector(`.${whiteStone[k]}`);
+                //         console.log("에러상황",newWhiteStone); // null
+                //         newWhiteStone.style.backgroundColor = "white";
+                //         newWhiteStone.style.border = "2px solid black";
+                //         newWhiteStone.innerHTML=count;
+                //     } k++;
+                // }
                 // }
             // }
             // blackStone[i].style.backgroundColor = "black";
             // blackStone[i].style.border = "black";
 
-            // let replayOmok = setInterval((함수), 1000);
-            // if()
-            // clearInterval(replayOmok)
+            let replayOmok = setInterval(()=>{
+                let k = 0;
+
+                for(count = 1; count < totalStone.length+1; count++){
+                    if(count%2!=0) {
+                        console.log(k);
+                        let newBlackStone = document.querySelector(`.${blackStone[k]}`);
+                        newBlackStone.style.backgroundColor = "black";
+                        newBlackStone.style.border = "black";
+                        newBlackStone.innerHTML=count;
+                    } else {
+                        k--;
+                        console.log(k);
+                        console.log("클래스",whiteStone[k]); // undefined
+                        let newWhiteStone = document.querySelector(`.${whiteStone[k]}`);
+                        console.log("에러상황",newWhiteStone); // null
+                        newWhiteStone.style.backgroundColor = "white";
+                        newWhiteStone.style.border = "2px solid black";
+                        newWhiteStone.innerHTML=count;
+                    } k++;
+                    if(count == totalStone.length){
+                    clearInterval(replayOmok)}
+                }
+                           
+            }, 1000);
+
+             
+            
+
+            function makeReplay (){
+                let k = 0
+
+                for(count = 1; count < totalStone.length+1; count++){
+                    if(count%2!=0) {
+                        console.log(k);
+                        let newBlackStone = document.querySelector(`.${blackStone[k]}`);
+                        newBlackStone.style.backgroundColor = "black";
+                        newBlackStone.style.border = "black";
+                        newBlackStone.innerHTML=count;
+                    } else {
+                        k--;
+                        console.log(k);
+                        console.log("클래스",whiteStone[k]); // undefined
+                        let newWhiteStone = document.querySelector(`.${whiteStone[k]}`);
+                        console.log("에러상황",newWhiteStone); // null
+                        newWhiteStone.style.backgroundColor = "white";
+                        newWhiteStone.style.border = "2px solid black";
+                        newWhiteStone.innerHTML=count;
+                    } k++;
+                }
+            }
+
+            
 
             //어떤 함수를 넣어야 하나.
             //function qq() {
