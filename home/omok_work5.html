@@ -164,7 +164,7 @@
                 let Attr = document.createAttribute("class");
                 
                 Attr.value = "stone" + j + i;
-                TD.setAttributeNode(Attr);                    // class 부여 
+                TD.setAttributeNode(Attr); 
                 TD.style.border = "2px solid transparent";
                 // TD.style.backgroundColor = "yellow";
                 TD.style.borderRadius = "50px";
@@ -212,35 +212,40 @@
     function getUserPlayTime() {
         return getPlayTime;
     }
+    
+    // 화면 부분 display하는 함수
+    function timeDisplay(playTime) {
+        let pastTime = document.querySelector("#rightBottom2");
+        let leftTime = document.querySelector("#rightBottom3");
+        
+        pastTime.textContent = "이번경과시간 : " + playTime + "초";
+        leftTime.textContent = "남은시간 : " + Number(10 - playTime) + "초";
+    }
 
     Table2.addEventListener("click", function(e) {
         let clickStone = e.target;
         let playTime = 0;
         
         if (clickStone.id != "Table2") {
-            // 1번째 실행시 if(a) 문을 거치지 않음
-            // 백돌인 경우만 if(a) 문을 거쳐서 실행됨
             if (a) {
                 clearInterval(a);
                 playTime = 0;
             };
             
-            // 각 순서에 따라 각각의 새로운 경과시간을 부여함
             a = setInterval(function() {
-                let pastTime = document.querySelector("#rightBottom2");
-                pastTime.textContent = "이번경과시간 : " + playTime + "초";
-                document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
-                playTime++;
-                
-                // 전역변수 getPlayTime 에 값을 저장
+                // 화면 부분 display하는 함수
+                timeDisplay(playTime);
+                // **** 밖에서 playTime 을 가져다 쓸거기때문에 더하기 전에 값을 저장해야됨;
                 setUserPlayTime(playTime);
                 
-                // 10초가 넘으면 초기화 시켜야 함.
+                playTime++;
+                
+                
                 if (playTime > 10) {
                     clearInterval(a);
                     playTime = 0;
-                    document.querySelector("#rightBottom2").textContent = "이번경과시간 : 0초";
-                    document.querySelector("#rightBottom3").textContent = "남은시간 : 10초";
+                    // 화면 부분 display하는 함수
+                    timeDisplay(playTime);
                     }
                 }, 1000);
         
