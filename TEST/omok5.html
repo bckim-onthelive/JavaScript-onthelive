@@ -40,7 +40,7 @@
             <table id="Table" style="border-collapse: collapse;"></table>
             <table id="Table2" style="border-collapse: seperate; position: absolute; top: -35px; left: -35px; border-spacing:25px 23px;"></table>
         </div>
-            <div style="display:inline; position:absolute; margin-left: 300px; background-color: blue; color: white;">
+            <div style="display:inline; position:absolute; margin-left: 30px; background-color: blue; color: white;">
                 <h1>텐초목</h1>
                 <span>10초안에 두지 않으면 기회는 상대편에게 ~</span>
                 <br><br>
@@ -99,7 +99,10 @@
         let row = 0;
         let col = 0;
 
+        let isreplaying = false; 
+
         function replay() {
+            isreplaying = true;
             for(j = 1; j-1 < row; j++){
                 for(i = 1; i-1 < col; i++) {
                     let stone = document.querySelector(".stone"+i+j);
@@ -113,19 +116,15 @@
             let replayOmok = setInterval(()=>{
                     if(z%2!=0) {
                         let newBlackStone = document.querySelector(`.${blackStone[k]}`);
-                        console.log("newBlackStone0:",newBlackStone)
                         newBlackStone.style.backgroundColor = "black";
                         newBlackStone.style.border = "black";
                         newBlackStone.innerHTML=z;
-                        console.log("newBlackStone1:",newBlackStone)
                     } else {
                         k--;
                         let newWhiteStone = document.querySelector(`.${whiteStone[k]}`);
-                        console.log("에러상황0",newWhiteStone);
                         newWhiteStone.style.backgroundColor = "white";
                         newWhiteStone.style.border = "2px solid black";
                         newWhiteStone.innerHTML=z;
-                        console.log("에러상황1",newWhiteStone);
                     } k++;
                     z++;
                     if(z >= totalStone.length+1){
@@ -189,9 +188,12 @@
                         TD.style.verticalAlign = "bottom";
                         TD.style.backgroundColor = "transparent";
                         TD.style.borderRadius = "0px";
+                        console.log("TD 값:",TD);
+                        TD.style.pointerEvents = "none";
 
                         if (k == 0) {
                             TD.innerHTML = "";
+                            TD.style.pointerEvents = "none";
                         }
                     } else {
                         if (k == 0) {
@@ -204,6 +206,7 @@
                             TD.style.verticalAlign = "middle";
                             TD.style.backgroundColor = "transparent";
                             TD.style.borderRadius = "0px";
+                            TD.style.pointerEvents = "none";
                         }
                     }
                     TR.appendChild(TD);
@@ -224,10 +227,11 @@
             let clickStone = e.target;
             let playTime = 0;
 
-            if (clickStone.id != "Table2") {
+            if (clickStone.id != "Table2"||clickStone.className) {
                 if (count % 2 != 0) {
                     clickStone.style.backgroundColor = "black";
                     clickStone.style.color = "white";
+                    clickStone.style.pointerEvents = "none";
                     blackStone.push(clickStone.className);
                     totalStone.push(clickStone.className);
                     blackTime += getUserPlayTime();
@@ -236,6 +240,7 @@
                     clickStone.style.backgroundColor = "white";
                     clickStone.style.borderColor = "black";
                     clickStone.style.color = "black";
+                    clickStone.style.pointerEvents = "none";
                     whiteStone.push(clickStone.className);
                     totalStone.push(clickStone.className);
                     whiteTime += getUserPlayTime();
@@ -256,13 +261,13 @@
                     document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
                     playTime++;
                     setUserPlayTime(playTime);
-                    if (playTime > 10) {
+                    if (playTime > 10 || isreplaying) {
                         clearInterval(a);
                         playTime = 0;
                         document.querySelector("#rightBottom2").textContent = "이번경과시간 : 0초";
                         document.querySelector("#rightBottom3").textContent = "남은시간 : 10초";      
                     }
-                }, 1000);
+                }, 500);
                 
                     
                 count++;
