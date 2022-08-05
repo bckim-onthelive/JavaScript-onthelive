@@ -27,8 +27,6 @@
             border: black;
             padding-left: 20px;
         }
-
-        
     </style>
 </head>
 
@@ -37,7 +35,7 @@
     <button onclick="replay()">리플레이 확인하기</button>
     <br><br>
     <div style="position: relative; margin-top: 15px;">
-        <div style="width: flex; height: 1700px; background-color: blue; position: right; top: -10px; z-index: -1;">
+        <div style="width: flex; height: 1700px; background-color: blue; top: -10px; z-index: -1;">
         <div id="Main" style="position: flex; top:10px; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
             <table id="Table" style="border-collapse: collapse;"></table>
             <table id="Table2" style="border-collapse: seperate; position: absolute; top: -35px; left: -35px; border-spacing:25px 23px;"></table>
@@ -95,7 +93,6 @@
         let count = 1;
         let a = undefined;
 
-        let handleId = 0;
         let getPlayTime = 0;
         let playTime = 0
 
@@ -103,33 +100,32 @@
         let col = 0;
 
         function replay() {
-            for(i = 1; i < row; i++){
-                for(j = 1; j < col; j++) {
+            for(j = 1; j-1 < row; j++){
+                for(i = 1; i-1 < col; i++) {
                     let stone = document.querySelector(".stone"+i+j);
                     stone.style.backgroundColor = "transparent";
                     stone.style.borderColor = "transparent";
                     stone.innerHTML="";
                 }
             }
-            console.log("totalStone return:",totalStone);
             let k = 0;
             let z = 1;
             let replayOmok = setInterval(()=>{
                     if(z%2!=0) {
-                        console.log(k);
                         let newBlackStone = document.querySelector(`.${blackStone[k]}`);
+                        console.log("newBlackStone0:",newBlackStone)
                         newBlackStone.style.backgroundColor = "black";
                         newBlackStone.style.border = "black";
                         newBlackStone.innerHTML=z;
+                        console.log("newBlackStone1:",newBlackStone)
                     } else {
                         k--;
-                        console.log(k);
-                        console.log("클래스",whiteStone[k]);
                         let newWhiteStone = document.querySelector(`.${whiteStone[k]}`);
-                        console.log("에러상황",newWhiteStone);
+                        console.log("에러상황0",newWhiteStone);
                         newWhiteStone.style.backgroundColor = "white";
                         newWhiteStone.style.border = "2px solid black";
                         newWhiteStone.innerHTML=z;
+                        console.log("에러상황1",newWhiteStone);
                     } k++;
                     z++;
                     if(z >= totalStone.length+1){
@@ -234,9 +230,7 @@
                     clickStone.style.color = "white";
                     blackStone.push(clickStone.className);
                     totalStone.push(clickStone.className);
-                    console.log("black list:", blackStone);
                     blackTime += getUserPlayTime();
-                    console.log("흑돌누적시간",blackTime);
                     rightTop5.innerHTML = "흑돌소요시간 : " + blackTime + "초";
                 } else {
                     clickStone.style.backgroundColor = "white";
@@ -244,8 +238,7 @@
                     clickStone.style.color = "black";
                     whiteStone.push(clickStone.className);
                     totalStone.push(clickStone.className);
-                    console.log("white list:", whiteStone);
-                 whiteTime += getUserPlayTime();
+                    whiteTime += getUserPlayTime();
                     rightTop4.innerHTML = "백돌소요시간 : " + whiteTime + "초";
                 }
 
@@ -289,8 +282,6 @@
             };
             return blackStone, whiteStone, totalStone;
         });
-        console.log("검돌배열",blackStone);
-        console.log("흰돌배열",whiteStone);
     </script>
 </body>
 
