@@ -40,7 +40,7 @@
     <button onclick="makeTable()">오목판 만들기</button>
     <br><br>
     <div style="position: relative;">
-        <div style="width: flex; height: 1700px; background-color: blue; position: right; top: -10px; z-index: -1;">
+        <div style="width: flex; height: 1700px; background-color: blue; top: -10px; z-index: -1;">
         <div id="Main" style="position: flex; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
             <table id="Table" style="border-collapse: collapse;"></table>
             <table id="Table2" style="border-collapse: seperate; position: absolute; top: -35px; left: -35px; border-spacing:25px 23px;"></table>
@@ -97,7 +97,6 @@
         let count = 1;
         let a = undefined;
 
-        let handleId = 0;
         let getPlayTime = 0;
         let playTime = 0
 
@@ -197,16 +196,13 @@
                     clickStone.style.backgroundColor = "black";
                     clickStone.style.color = "white";
                     blackStone.push(clickStone.className);
-                    console.log("black list:", blackStone);
                     blackTime += getUserPlayTime();
-                    console.log("흑돌누적시간",blackTime);
                     rightTop5.innerHTML = "흑돌소요시간 : " + blackTime + "초";
                 } else {
                     clickStone.style.backgroundColor = "white";
                     clickStone.style.borderColor = "black";
                     clickStone.style.color = "black";
                     whiteStone.push(clickStone.className);
-                    console.log("white list:", whiteStone);
                     whiteTime += getUserPlayTime();
                     rightTop4.innerHTML = "백돌소요시간 : " + whiteTime + "초";
                 }
@@ -224,7 +220,6 @@
                     document.querySelector("#rightBottom3").textContent = "남은시간 : " + Number(10 - playTime) + "초";
                     playTime++;
                     setUserPlayTime(playTime);
-                    console.log("겟",getUserPlayTime());
                     if (playTime > 10) {
                         clearInterval(a);
                         playTime = 0;
