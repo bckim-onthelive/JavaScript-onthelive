@@ -99,7 +99,8 @@
         let row = 0;
         let col = 0;
 
-        let isreplaying = false; 
+        let isreplaying = false;
+        let cancellMakeTable = true;
 
         function replay() {
             isreplaying = true;
@@ -133,41 +134,45 @@
         };
 
         function makeTable() {
-            row = prompt("몇 행을 원하는 가");
-            col = prompt("몇 열을 원하는 가");
-            
-            Main.style.backgroundColor = "#d37313";
+            if(cancellMakeTable){
+                console.log("캔맥테",cancellMakeTable);
+                row = prompt("몇 행을 원하는 가");
+                col = prompt("몇 열을 원하는 가");
+                
+                Main.style.backgroundColor = "#d37313";
 
-            for (let j = 0; j < Number(row); j++) {
-                let TR = document.createElement('tr');
-                for (let i = 0; i < Number(col); i++) {
-                    let TD = document.createElement('td');
-                    if (i == 0) {
-                        TD.style.border = "transparent";
-                        TD.style.paddingRight = "5px";
-                        TD.style.textAlign = "center";
-                        TD.style.verticalAlign = "bottom";
-
-                        if (j == 0) {
-                            TD.style.textAlign = "right";
-                            TD.style.verticalAlign = "bottom";
-                        }
-                    } else {
-                        if (j == 0) {
+                for (let j = 0; j < Number(row); j++) {
+                    let TR = document.createElement('tr');
+                    for (let i = 0; i < Number(col); i++) {
+                        let TD = document.createElement('td');
+                        if (i == 0) {
                             TD.style.border = "transparent";
                             TD.style.paddingRight = "5px";
-                            TD.style.textAlign = "right";
-                            TD.style.verticalAlign = "middle";
-                        }
-                    }
-                    TR.appendChild(TD);
-                }
-                Table.appendChild(TR);
-            }
-            makeCloneTable(row, col);
-            return row, col;
-        }
+                            TD.style.textAlign = "center";
+                            TD.style.verticalAlign = "bottom";
 
+                            if (j == 0) {
+                                TD.style.textAlign = "right";
+                                TD.style.verticalAlign = "bottom";
+                            }
+                        } else {
+                            if (j == 0) {
+                                TD.style.border = "transparent";
+                                TD.style.paddingRight = "5px";
+                                TD.style.textAlign = "right";
+                                TD.style.verticalAlign = "middle";
+                            };
+                        };
+                        TR.appendChild(TD);
+                    };
+                    Table.appendChild(TR);
+                    console.log("캔맥테2",cancellMakeTable);
+                    cancellMakeTable = false;
+                };
+                makeCloneTable(row, col);
+                return row, col;
+            };
+        };
         function makeCloneTable(row, col) {
             for (let k = 0; k < Number(row) + 1; k++) {
                 let TR = document.createElement('tr');
@@ -188,7 +193,6 @@
                         TD.style.verticalAlign = "bottom";
                         TD.style.backgroundColor = "transparent";
                         TD.style.borderRadius = "0px";
-                        console.log("TD 값:",TD);
                         TD.style.pointerEvents = "none";
 
                         if (k == 0) {
@@ -227,7 +231,7 @@
             let clickStone = e.target;
             let playTime = 0;
 
-            if (clickStone.id != "Table2"||clickStone.className) {
+            if (clickStone.id != "Table2") {
                 if (count % 2 != 0) {
                     clickStone.style.backgroundColor = "black";
                     clickStone.style.color = "white";
