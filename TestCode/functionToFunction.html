@@ -9,23 +9,30 @@
 <body>
     <!-- a함수는 answer값을 대입하고 리턴한다. -->
     <!-- <button onclick="a()">ho</button> -->
+    <button onclick="reloaded()">RE</button>
     <script>
+        function reloaded() {
+            location.reload(true);
+        }
+        // console.log(Boolean(location.reload(true)));
+        // 일정시간 후 페이지 자동 새로고침
+        // - setTimeout(function(){location.reload();},5000); //5초 후 새로고침
         function a() {
             return;
         }
 
         function b() {
-            console.log(a());
+            console.log(a()); //undefined
             if(a()==true) {
                 console.log("통과");
             } else if(a()==false) {
                 console.log("실패")
             }
-            console.log("null값");
+            console.log("null값"); //나옴
         }
         b();
 
-        console.log(Boolean(null));
+        console.log(Boolean(null)); //false
 
         // let answer = 0;
         // function a() {
