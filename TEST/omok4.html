@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,14 +15,18 @@
             width: 50px;
             height: 50px;
         }
+
         sup {
             font-size: 15px;
         }
-        .tdText, .tdText2 {
+
+        .tdText,
+        .tdText2 {
             color: white;
             font-size: 20px;
             border: black;
         }
+
         /* transparent */
         .tdText {
             color: orange;
@@ -31,16 +36,18 @@
         }
     </style>
 </head>
+
 <body>
-    <button onclick = "makeTable()">오목판 만들기</button>
+    <button onclick="makeTable()">오목판 만들기</button>
     <br><br>
     <div style="position: relative;">
-        <div id = "Main" style = "position: relative; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
-            <table id = "Table" style = "border-collapse: collapse;"></table>
-            <table id = "Table2" style = "position: absolute; top: 18px; left: 19px; border-spacing: 26px 23px;"></table>
+        <div id="Main" style="position: relative; display: inline-block; padding-right: 30px; padding-bottom: 30px;">
+            <table id="Table" style="border-collapse: collapse;"></table>
+            <table id="Table2" style="position: absolute; top: 18px; left: 19px; border-spacing: 26px 23px;"></table>
             <!-- width: 1140px; height: 1000px -->
         </div>
-        <div style="width: 2000px; height: 1700px; background-color: blue; position: absolute; top: -10px; z-index: -1;">
+        <div
+            style="width: 2000px; height: 1700px; background-color: blue; position: absolute; top: -10px; z-index: -1;">
             <div style="margin-left: 1200px; color: white;">
                 <h1>텐초목</h1>
                 <span>10초안에 두지 않으면 기회는 상대편에게 ~</span>
@@ -89,42 +96,42 @@
         let skach = 10;
         let whrudch = 0;
         let bkrudch = 0;
-        
+
 
         function makeTable() {
             let row = prompt("몇 행을 원하는 가");
             let col = prompt("몇 열을 원하는 가");
             Main.style.backgroundColor = "#d37313";
-            
-            for(let j = 0; j < Number(row) + 1; j++) {
+
+            for (let j = 0; j < Number(row) + 1; j++) {
                 let TR = document.createElement('tr');
 
-                for(let i = 0; i < Number(col) + 1; i++) {
+                for (let i = 0; i < Number(col) + 1; i++) {
                     let TD = document.createElement('td');
-                    
-                    if(j == 0 || i == 0) {
+
+                    if (j == 0 || i == 0) {
                         // let trAttr = document.createAttribute("class")
                         // trAttr.value = "firstTr";
                         // TR.setAttribute(trAttr);
                         TD.style.border = "transparent";
-                        
+
                         TD.style.paddingRight = "5px";
-                        
-                        if(j == 0) {
-                            TD.innerHTML = String.fromCharCode(65+Number(i));
-                            if(TD.innerHTML > "H") {
-                                TD.innerHTML = String.fromCharCode(66+Number(i));
+
+                        if (j == 0) {
+                            TD.innerHTML = String.fromCharCode(65 + Number(i));
+                            if (TD.innerHTML > "H") {
+                                TD.innerHTML = String.fromCharCode(66 + Number(i));
                             }
                             TD.style.textAlign = "right";
                             TD.style.verticalAlign = "middle";
                         }
-                        if(i == 0) {
-                            TD.innerHTML = Number(row)-j+1;
+                        if (i == 0) {
+                            TD.innerHTML = Number(row) - j + 1;
                             TD.style.textAlign = "center";
                             TD.style.verticalAlign = "bottom";
                         }
-                        if(j == 0 && i == 0) {
-                            TD.innerHTML = (Number(row)+1)+"<sup>"+"A";
+                        if (j == 0 && i == 0) {
+                            TD.innerHTML = (Number(row) + 1) + "<sup>" + "A";
                             TD.style.textAlign = "right";
                             TD.style.verticalAlign = "bottom";
                         }
@@ -137,13 +144,13 @@
         }
 
         function makeCloneTable(row, col) {
-            for(let k = 0; k < Number(row)+1; k++) {
+            for (let k = 0; k < Number(row) + 1; k++) {
                 let TR = document.createElement('tr');
-                
-                for(let l = 0; l < Number(col)+1; l++) {
+
+                for (let l = 0; l < Number(col) + 1; l++) {
                     let TD = document.createElement('td');
                     let Attr = document.createAttribute("class");
-                    Attr.value = "stone"+l+k;
+                    Attr.value = "stone" + l + k;
                     TD.setAttributeNode(Attr);
                     TR.appendChild(TD);
                     TD.style.border = "2px solid transparent";
@@ -157,28 +164,32 @@
             }
         }
         let count = 0
-        Table2.addEventListener("click", function(e) {
-            if(e.target.id=="Table2") {
+        Table2.addEventListener("click", function (e) {
+
+            if (e.target.id == "Table2") {
                 console.log("실패");
             } else {
-                if(count%2==0) {
+                console.log(count);
+                count++;
+                console.log(count);
+
+                if (count % 2 == 0) {
                     e.target.style.backgroundColor = "black";
-                    e.target.innerHTML = count+1;
+                    e.target.innerHTML = count;
                     e.target.style.color = "white";
-                    
+
                     blackStone.push(e.target.innerHTML);
-                    console.log("black list:",blackStone);
+                    console.log("black list:", blackStone);
                     tenSecond;
                 } else {
                     e.target.style.backgroundColor = "white";
                     e.target.style.borderColor = "black";
-                    e.target.innerHTML = count+1;
+                    e.target.innerHTML = count;
                     e.target.style.color = "black";
                     whiteStone.push(e.target.innerHTML);
                     tenSecond;
-                    console.log("white list:",whiteStone.length);
+                    console.log("white list:", whiteStone.length);
                 }
-                count++;
                 let totalStone = blackStone.concat(whiteStone);
 
                 rightTop2.innerHTML = "백돌 : " + whiteStone.length + "개";
@@ -186,59 +197,59 @@
                 rightTop1.innerHTML = "놓여진 돌의 개수 : " + totalStone.length + "개";
             }
         });
-            // console.log("조건문 밖 list:",whiteStone);
+        // console.log("조건문 밖 list:",whiteStone);
 
-            
-            
+
+
         rightTop4.innerHTML = "백돌소요시간 : " + whrudch + "초";
         rightTop5.innerHTML = "흑돌소요시간 : " + bkrudch + "초";
         rightBottom1.innerHTML = "순서 : " + whBk
         rightBottom2.innerHTML = "이번경과시간 : " + rudch + "초";
         rightBottom3.innerHTML = "남은시간 : " + skach + "초";
 
-            // let sittedStone = 0;
-            // let whBk = "순서";
-            // let rudch = 0;
-            // let skach = 0;
-            // let whrudch = 0;
-            // let bkrudch = 0;
+        // let sittedStone = 0;
+        // let whBk = "순서";
+        // let rudch = 0;
+        // let skach = 0;
+        // let whrudch = 0;
+        // let bkrudch = 0;
 
         let handleId = 0;
         let playTime = 0;
         let lastTime = 10;
-            // let tenSecond = setInterval(function(){
-            //     let pastTime = document.querySelector("#rightBottom2");
-            //     pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
-            //     document.querySelector("#rightBottom3").textContent = "남은시간 : " + lastTime-- + "초";
-            //     if(playTime > 10) {
-            //         clearInterval(tenSecond);
-            //         playTime = 0;
-            //         pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
-            //         document.querySelector("#rightBottom3").textContent = "남은시간 : " + 10 + "초";
-            //     };
-            //     // playTime = 0;
-            // }, 1000);
+        // let tenSecond = setInterval(function(){
+        //     let pastTime = document.querySelector("#rightBottom2");
+        //     pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
+        //     document.querySelector("#rightBottom3").textContent = "남은시간 : " + lastTime-- + "초";
+        //     if(playTime > 10) {
+        //         clearInterval(tenSecond);
+        //         playTime = 0;
+        //         pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
+        //         document.querySelector("#rightBottom3").textContent = "남은시간 : " + 10 + "초";
+        //     };
+        //     // playTime = 0;
+        // }, 1000);
 
-        function ttenSecond(){
+        function ttenSecond() {
             let pastTime = document.querySelector("#rightBottom2");
             pastTime.textContent = "이번경과시간 : " + playTime++ + "초";
             document.querySelector("#rightBottom3").textContent = "남은시간 : " + lastTime-- + "초";
             console.log("시간 소요 : ", playTime);
-            if(playTime > 10) {
+            if (playTime > 10) {
                 console.log("playTime : ", playTime);
                 // playTime = 0;
                 pastTime.textContent = "이번경과시간 : " + 0 + "초";
                 document.querySelector("#rightBottom3").textContent = "남은시간 : " + 10 + "초";
                 console.log("hand : ", handleId);
-                if(handleId == 1) {
+                if (handleId == 1) {
                     clearInterval(ttenSecond);
                 }
             };
-            
+
         };
 
-        btn.onclick=function(){
-            if(handleId == 0) {
+        btn.onclick = function () {
+            if (handleId == 0) {
                 handleId = setInterval(ttenSecond, 1000);
                 clearInterval(ttenSecond);
                 // if(playTime > 10) {
@@ -250,10 +261,11 @@
             };
         }
 
-        btn2.onclick = function(){
+        btn2.onclick = function () {
             clearInterval(handleId);
             handleId = 0;
         }
     </script>
 </body>
+
 </html>
