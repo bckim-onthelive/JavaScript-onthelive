@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수에 함수</title>
+</head>
+<body>
+    <!-- a함수는 answer값을 대입하고 리턴한다. -->
+    <!-- <button onclick="a()">ho</button> -->
+    <button onclick="reloaded()">RE</button>
+    <script>
+        function reloaded() {
+            location.reload(true);
+        }
+        // console.log(Boolean(location.reload(true)));
+        // 일정시간 후 페이지 자동 새로고침
+        // - setTimeout(function(){location.reload();},5000); //5초 후 새로고침
+        function a() {
+            return;
+        }
+
+        function b() {
+            console.log(a()); //undefined
+            if(a()==true) {
+                console.log("통과");
+            } else if(a()==false) {
+                console.log("실패")
+            }
+            console.log("null값"); //나옴
+        }
+        b();
+
+        console.log(Boolean(null)); //false
+
+        // let answer = 0;
+        // function a() {
+        //     answer = 5;
+        //     return answer;
+        // };
+        // console.log(a());
+
+        // // function b() {
+        // //     let 
+        // // }
+        // console.log("answer값:",answer);
+        
+        // // function b() {
+        // //     if(a() == true) {
+
+        // //     }
+        // // }
+        
+        function sum(num1, num2){ //함수의 형태 - 실행문
+            return num1+num2;
+        }
+        let f = sum(10,20); //함수의 실체 - 결과값 = 연산은 되지만 값을 알 수는 없다.
+        console.log(f);
+
+        function count(n1, n2){
+            return n1*n2
+        }
+        let s = count(5,4);
+        console.log(s);
+    </script>
+</body>
+</html>
