@@ -1,33 +1,11 @@
 세번째 과제
 
-서버 요청 방법 배우기 
+서버 요청 방법 배우기 및 리엑트 진도 
 1. axios 이용해서 서버 요청 하기  참고영상 : 
-(https://www.youtube.com/watch?v=qM4G1Ai2ZpE) && 
+(https://www.youtube.com/watch?v=qM4G1Ai2ZpE) &
 (https://inpa.tistory.com/entry/AXIOS-%F0%9F%93%9A-%EC%84%A4%EC%B9%98-%EC%82%AC%EC%9A%A9)
 
-2. 
+2. 리엑트 router 배우기 (리엑트 책 참조) & (코딩앙마 영상)
 
 
-
-
-※ 과제 제출 파일은 /home 폴더에
-homework-날짜.html 으로 제출할 것
-ex) homework-220817.html
-
-과제 최 상단에 주석 달 것:
-
-
-<!-- 과제의 내용 
-
-
-
--->
-
-
-
-
-<html>
-...
-...
-...
-</html>
+3. 완료시 코멘트 입력 후  commit & push 하기 
